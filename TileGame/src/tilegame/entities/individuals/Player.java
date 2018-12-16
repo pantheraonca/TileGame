@@ -91,7 +91,7 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 	@Override
 	public void die() {
 		System.out.println("You loose!");
-		//handler.getMouseInputManager().setUIManager(handler.getUIManager()); //setting this back to the UiManager is important to the buttons can be pressed again 
+		handler.getMouseInputManager().setUIManager(handler.getUIManager()); //setting this back to the UiManager is important to the buttons can be pressed again 
 		State.setState(handler.getGame().menuState); //goes back to menu state but does not reset menustate so start button is pressed
 		State.CheckScore();
 		State.setYourScore(0);//aber erst wenn mit highscore verglichen ist passt aber 
