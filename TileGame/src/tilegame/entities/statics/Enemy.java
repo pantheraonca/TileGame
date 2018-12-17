@@ -17,19 +17,19 @@ public class Enemy extends StaticEntity {
 
 	@Override
 	public void update() {
-		
+
 	}	
-	
+
 	@Override
 	public void die() {
 		State.setYourScore(x = State.getYourScore() + 20);
 	}
 
-		
+
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Assets.enemy, (int) (x), (int) (y), width, height, null);
-		
+
 	}
 
 }

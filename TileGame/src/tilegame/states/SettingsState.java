@@ -2,25 +2,19 @@ package tilegame.states;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import tilegame.Handler;
 import tilegame.difficulty.Difficulty;
-import tilegame.difficulty.DifficultyState;
 import tilegame.userinterface.ClickListener;
 import tilegame.userinterface.UIButton;
-import tilegame.userinterface.UIImageButton;
 import tilegame.userinterface.UIManager;
 import tilegame.graphics.Assets;
-import java.awt.Graphics;
+
 
 public class SettingsState extends State{
 
 	private UIButton imageButtonEasy, imageButtonMedium, imageButtonHard, imageButtonBack;
 	private BufferedImage easy, medium, hard, back;
 	private UIManager settingsUiManager;
-
-	//Difficulty
-	private Difficulty difficulty;
 
 
 	public SettingsState(Handler handler) { 
@@ -36,7 +30,7 @@ public class SettingsState extends State{
 
 
 
-		imageButtonEasy = 	new UIButton (100, 100, 32, 32, easy, new ClickListener() {
+		imageButtonEasy = 	new UIButton (100, 100, 64, 64, easy, new ClickListener() {
 
 			@Override
 			public void onClick () { 
@@ -46,7 +40,7 @@ public class SettingsState extends State{
 			}
 		});
 
-		imageButtonMedium = new UIButton (200, 100, 32, 32, medium, new ClickListener(){
+		imageButtonMedium = new UIButton (200, 100, 64, 64, medium, new ClickListener(){
 
 			@Override
 			public void onClick () { 
@@ -56,7 +50,7 @@ public class SettingsState extends State{
 			}
 		});
 
-		imageButtonHard = new UIButton (300, 100, 32, 32, hard, new ClickListener(){
+		imageButtonHard = new UIButton (300, 100, 64, 64, hard, new ClickListener(){
 
 			@Override
 			public void onClick () { 
@@ -66,7 +60,7 @@ public class SettingsState extends State{
 			}
 		});
 
-		imageButtonBack = new UIButton (300, 500, 32, 32, back, new ClickListener(){
+		imageButtonBack = new UIButton (300, 200, 64, 64, back, new ClickListener(){
 
 			@Override
 			public void onClick () { 

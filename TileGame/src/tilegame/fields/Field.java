@@ -11,9 +11,8 @@ import tilegame.tiles.Tile;
 import tilegame.utils.Utils;
 
 public class Field {
-	
 
-	@SuppressWarnings("unused") //suppresses warning that handler is not used
+
 	private Handler handler;
 	private int positioner = 32;
 	private int width = 20, height = 20; //fieldsize
@@ -21,17 +20,17 @@ public class Field {
 	private int energy = 200; //energy gets set here
 	private int[][] fieldTiles; //multidimensional array
 	private int[] spawnArray = new int[24];
-	
+
 	//Entities
 	private EntityManager entityManager;
-	
-	
+
+
 	public Field(Handler handler, String path) { 
-		this.handler = handler; //was: this.setHandler(handler); before
-		entityManager = new EntityManager(handler, new Player(handler, spawnX, spawnY)); //what are the numbers 
-		
+		this.handler = handler;
+		entityManager = new EntityManager(handler, new Player(handler, spawnX, spawnY));
+
 		entityManager.addEntity(new Grail(handler, positioner * 10, positioner * 19));
-		
+
 		randomSpawn(); //maybe make forloop and be able to set number of enemies
 		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[0], positioner * spawnArray[1]));
 		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[2], positioner * spawnArray[3]));
@@ -45,21 +44,18 @@ public class Field {
 		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[18], positioner * spawnArray[19]));
 		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[20], positioner * spawnArray[21]));
 		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[22], positioner * spawnArray[23]));
-		
+
 		loadField(path); //sollte der string path heißen? ist kein path mehr
-		
-		//entityManager.getPlayer().setX(spawnX); brauchmer glaub nemme
-		//entityManager.getPlayer().setY(spawnY);
-		
+
 		entityManager.getPlayer().setEnergy(energy); //why do we do this here ???
 	}
-	
-	
+
+
 	public void update() {
 		entityManager.update();
-		
+
 	}
-	
+
 	public void render(Graphics g) {
 
 		for(int y = 0; y < height; y++) {
@@ -67,53 +63,53 @@ public class Field {
 				getTile(x, y).render(g, x * Tile.TILE_WIDTH, y * Tile.TILE_HEIGHT);	
 			}
 		}
-		
+
 		//Entities
 		entityManager.render(g);
-	
+
 	}
 
 
 	public Tile getTile(int x, int y) {
 		if(x < 0 || y < 0 || x >= width || y >= height)
 			return Tile.grassTile; //telling the game if player is out of map that he is standing on a grass tile so that the game doesnt crash
-		
-		
+//DIEEEEEE
+
 		Tile t = Tile.tiles[fieldTiles[x][y]];
 		if(t == null)
-			return Tile.dirtTile;
+			return Tile.grassTile;
 		return t; //if tile id number 5 when you dont have that id in the array you will end up of that tile being null so programm has a problem 
 	}
-	
+
 
 	private void loadField(String path) {
 		String identities = "00000000000000000124"; //around 5% each are stone dirt and energy tiles
 		String randomString = "";
 		int length = width * height * 2; //so kann man oben die fieldsize verändern
-	
+
 		Random r = new Random();
-	
+
 		char[] text = new char[length];{
-	
+
 			for(int i = 0; i < length; i++) {
 				if ((i+2)%2 == 1) {	
 					text[i] = ' ';					
 				}									
 				else {						
-					
-				text[i] = identities.charAt(r.nextInt(identities.length()));
+
+					text[i] = identities.charAt(r.nextInt(identities.length()));
 				}
 			}
-	
+
 			for(int i = 0; i < text.length; i++) {
 				randomString += text[i];
 			}
 			//System.out.print(randomString);//kann wech glaub
 		}
-		
+
 		String[] randomArray = randomString.split("\\s+");
-	
-		
+
+
 		fieldTiles = new int[width][height];
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
@@ -121,10 +117,10 @@ public class Field {
 			}
 		}
 	}
-	
+
 	private int[] randomSpawn() {
 		Random rand_nr = new Random();
-		
+
 		for(int i = 0; i < spawnArray.length; i++) {
 			spawnArray[i] = rand_nr.nextInt(20);
 		}
@@ -132,16 +128,16 @@ public class Field {
 	}
 
 	//Getters Setters
-	
-	
+
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
@@ -160,7 +156,10 @@ public class Field {
 	public void setSpawnY(int spawnY) {
 		this.spawnY = spawnY;
 	}
-	
-	
-	
+	public Handler getHandler() {
+		return handler;
+	}
+	public void setHandler(Handler handler) {
+		this.handler = handler;
+	}
 }

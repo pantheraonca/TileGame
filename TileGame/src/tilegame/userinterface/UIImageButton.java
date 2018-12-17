@@ -7,7 +7,7 @@ public class UIImageButton extends UIObject {
 
 	private BufferedImage[] images;
 	private ClickListener clicker;
-	
+
 	public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
 		super(x, y, width, height);
 		this.images = images;
@@ -16,8 +16,7 @@ public class UIImageButton extends UIObject {
 
 	@Override
 	public void update() {
-		
-		
+
 	}
 
 	@Override
@@ -31,7 +30,5 @@ public class UIImageButton extends UIObject {
 	@Override
 	public void onClick() {
 		clicker.onClick();
-		
 	}
-
 }

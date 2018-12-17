@@ -1,6 +1,6 @@
 package tilegame;
 
-import tilegame.difficulty.DifficultyState;
+import tilegame.difficulty.DifficultyLevel;
 import tilegame.fields.Field;
 import tilegame.graphics.PlayerCamera;
 import tilegame.input.KeyInputManager;
@@ -11,27 +11,27 @@ public class Handler {
 
 	private Game game;
 	private Field field;
-	
+
 	public Handler(Game game) { //allows us to just pass one object and access all the rest in here
 		this.game = game;
 	}
-	
+
 	public KeyInputManager getKeyInputManager() {
 		return game.getKeyInputManager();
 	}
-	
+
 	public MouseInputManager getMouseInputManager() {
 		return game.getMouseInputManager();
 	}
-	
+
 	public int getWidth() {
 		return game.getWidth();
 	}
-	
+
 	public int getHeight() {
 		return game.getHeight();
 	}
-	
+
 	public Game getGame() {
 		return game;
 	}
@@ -51,44 +51,33 @@ public class Handler {
 	public UIManager getUIManager () {
 		return game.getMenuState().getUiManager();
 	}
-	
+
 	public PlayerCamera getPlayerCamera() {
 		return game.getPlayerCamera();
 	}
-	
+
 	public int getVisibilityLevel() {
 		return game.gameState.getShadow().getVisibilityLevel();
 	}
-		
+
 	public void setVisibilityLevel(int visibilityLevel) {
-		
 		game.gameState.getShadow().setVisibilityLevel(visibilityLevel);
 	}
-	
-	/*public Difficulty getDifficulty() {
-		return game.getDifficulty();
-	}
 
-
-	public void setDifficulty(Difficulty difficulty) {
-		game.setDifficulty(difficulty);
-	}*/
-	
 	public UIManager getSettingsUiManager() {
 		return game.settingsState.getSettingsUiManager();
 	}
-	
-	public DifficultyState getDifficultyState() {
+
+	public DifficultyLevel getDifficultyState() {
 		return game.getDifficultyState();
 	}
 
-
-	public void setDifficultyState(DifficultyState difficultyState) {
+	public void setDifficultyState(DifficultyLevel difficultyState) {
 		game.setDifficultyState(difficultyState); 
 	}
 
 	public void setSettingsUiManager(UIManager settingsUiManager) {
 		game.settingsState.setSettingsUiManager(settingsUiManager);
 	}
-	
+
 }

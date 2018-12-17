@@ -18,9 +18,9 @@ public class Grail extends StaticEntity {
 
 	@Override
 	public void update() {
-		
+
 	}	
-	
+
 	@Override
 	public void die() {
 		JOptionPane.showMessageDialog(null, "You won!", null, 1);
@@ -31,10 +31,10 @@ public class Grail extends StaticEntity {
 		State.setYourScore(0);//aber erst wenn mit highscore verglichen ist passt aber 
 	}
 
-		
+
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Assets.grail, (int) (x), (int) (y), width, height, null);
-		
+
 	}
 }

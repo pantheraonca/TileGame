@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import tilegame.difficulty.Difficulty;
-import tilegame.difficulty.DifficultyState;
+import tilegame.difficulty.DifficultyLevel;
 import tilegame.display.Display;
 import tilegame.graphics.Assets;
 import tilegame.graphics.PlayerCamera;
@@ -24,8 +24,8 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 
 	private boolean running = false;
 	private Thread thread; //this is a thread object
-	
-	
+
+
 	private BufferStrategy bs; //tells the computer how to draw things to the screen
 	private Graphics g;
 
@@ -33,20 +33,20 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	public GameState gameState; //can access easily when public might not be best practice
 	public MenuState menuState;
 	public SettingsState settingsState;
-	
+
 	//Difficulty
-	private DifficultyState difficultyState;//change to difficultylevel
+	private DifficultyLevel difficultyLevel;//change to difficultylevel
 	private Difficulty difficulty;
-	
+
 	//Input
 	private KeyInputManager keyInputManager;
 	private MouseInputManager mouseInputManager;
 
 	//Handler
 	private Handler handler;
-	
+
 	//PlayerCamera
-	
+
 	private PlayerCamera playerCamera;
 
 	public Game(String title, int width, int height) {
@@ -67,9 +67,7 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		display.getCanvas().addMouseMotionListener(mouseInputManager);
 		//need getCanvas and getFrame so whatever is focused will be able to recognize mouse events 
 		Assets.init();
-		
-		//PlayerCamera
-		
+
 		playerCamera = new PlayerCamera (handler, 0,0);
 
 		handler = new Handler(this);
@@ -78,12 +76,10 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		settingsState = new SettingsState(handler);
 		menuState = new MenuState(handler);
 		State.setState(menuState); //put back to menu state to start at menu state	
-	
-		//Difficultylevel
+
+		//DIFFICULTY LEVEL
 		difficulty = Difficulty.EASY;
-		difficultyState = new DifficultyState(handler, difficulty);
-		//difficultyState.setDifficultyParameters; //kann glaub raus
-		
+		difficultyLevel = new DifficultyLevel(handler, difficulty);
 	}
 
 	private void update() { //updates variables positions etc.
@@ -103,19 +99,14 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		g = bs.getDrawGraphics(); //creating the paintbrush whut??
 		//clear screen put width and height so it clears everything
 		g.clearRect(0, 0, width, height);
-		//draw here
+		//DRAW HERE
 
 		if(State.getState() != null)
 			State.getState().render(g);
 
-		//end drawing
+		//END DRAWING
 		bs.show(); //what does this do
 		g.dispose(); //graphic object needs this
-		
-		//if (highscore == -1) {
-		//	//init highscore
-		//}
-			
 	}
 
 	public void run() { //needed for thread usage
@@ -170,9 +161,12 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			e.printStackTrace(); //wtf is this try catch statement
+			e.printStackTrace();
 		}
 	}
+
+
+	//GETTERS SETTERS
 
 	public KeyInputManager getKeyInputManager() { //method that return private variable so other methods can access it
 		return keyInputManager;
@@ -211,16 +205,16 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	}
 
 
-	public DifficultyState getDifficultyState() {
-		return difficultyState;
+	public DifficultyLevel getDifficultyState() {
+		return difficultyLevel;
 	}
 
 
-	public void setDifficultyState(DifficultyState difficultyState) {
-		this.difficultyState = difficultyState;
+	public void setDifficultyState(DifficultyLevel difficultyState) {
+		this.difficultyLevel = difficultyState;
 	}
-	
-	
-	
-	
+
+
+
+
 }

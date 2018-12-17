@@ -8,7 +8,7 @@ public class RandomField {
 	String randomString = "";
 	int length = 800;
 	private int [] randomArray;
-	
+
 	public RandomField() {
 
 	Random r = new Random();
@@ -20,7 +20,7 @@ public class RandomField {
 				text[i] = ' ';					
 			}									
 			else {								
-				
+
 			text[i] = identities.charAt(r.nextInt(identities.length()));
 			}
 		}
@@ -29,7 +29,7 @@ public class RandomField {
 			randomString += text[i];
 		}
 	}
-	
+
 	String[] randomArray = randomString.split("\\s+");
 	}
 

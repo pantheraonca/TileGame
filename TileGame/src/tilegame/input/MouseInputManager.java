@@ -11,55 +11,35 @@ public class MouseInputManager implements MouseListener, MouseMotionListener {
 	private boolean leftPressed, rightPressed;
 	private int mouseX, mouseY;
 	private UIManager uiManager;
-	
+
 	public MouseInputManager() {
-		
+
 	}
-	
+
 	public void setUIManager(UIManager uiManager) {
 		this.uiManager = uiManager;
 	}
-	
-	
-	//Getters
-	
-	public boolean isLeftPressed() {
-		return leftPressed;
-	}
-	
-	public boolean isRightPressed() {
-		return rightPressed;
-	}
-	
-	public int getMouseX() {
-		return mouseX;
-	}
-	
-	public int getMouseY() {
-		return mouseY;
-	}
-	
-	
+
 	// Implemented methods
-	
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mouseX = e.getX();
 		mouseY = e.getY();
-	
+
 		if(uiManager != null) //if the uiManager exists
 			uiManager.onMouseMove(e);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		
+
+
 	}
 
 	@Override
@@ -76,22 +56,39 @@ public class MouseInputManager implements MouseListener, MouseMotionListener {
 			leftPressed = false;
 		else if(e.getButton() == MouseEvent.BUTTON3)
 			rightPressed = false;
-		
+
 		if(uiManager != null) //if the uiManager exists
 			uiManager.onMouseRelease(e);
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
-	
+
+	//GETTERS SETTERS
+
+	public boolean isLeftPressed() {
+		return leftPressed;
+	}
+
+	public boolean isRightPressed() {
+		return rightPressed;
+	}
+
+	public int getMouseX() {
+		return mouseX;
+	}
+
+	public int getMouseY() {
+		return mouseY;
+	}
+
+
 
 }
