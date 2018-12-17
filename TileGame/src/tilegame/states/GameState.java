@@ -32,7 +32,7 @@ public class GameState extends State {
 	public void render(Graphics g) {
 
 		field.render(g);
-		//shadow.render(g);
+		shadow.render(g);
 		
 		if(State.getHighScore().equals("")) {
 			State.setHighScore(this.ReadHighScore());
@@ -43,5 +43,11 @@ public class GameState extends State {
 		
 	}
 	
+	public Shadow getShadow() {
+		return shadow;
+	}
+	public void setShadow(Shadow shadow) {
+		this.shadow = shadow;
+	}
 
 }

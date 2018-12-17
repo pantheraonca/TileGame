@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import tilegame.Handler;
 import tilegame.graphics.Assets;
 import tilegame.userinterface.ClickListener;
+import tilegame.userinterface.UIButton;
 import tilegame.userinterface.UIImageButton;
 import tilegame.userinterface.UIManager;
 
@@ -17,13 +18,22 @@ public class MenuState extends State {
 		handler.getMouseInputManager().setUIManager(uiManager);
 		
 		uiManager.addObject(new UIImageButton(200, 200, 64, 64, Assets.btn_start, new ClickListener() {
-//adds an start button in my case an oven
+		//adds an start button in my case an oven
 			@Override
 			public void onClick() {
 				handler.getMouseInputManager().setUIManager(null); //this way when states are switched you cannot give mouse input anymore otherwise you would still be able to press the buttons in the background
 				State.setState(handler.getGame().gameState); //when clicked then switches from menu to game	
 			}
 		}));
+		
+		uiManager.addObject(new UIButton(400, 200, 64, 64, Assets.settings, new ClickListener() {
+				@Override
+				public void onClick() {
+					handler.getMouseInputManager().setUIManager(handler.getSettingsUiManager()); //this way when states are switched you cannot give mouse input anymore otherwise you would still be able to press the buttons in the background
+					State.setState(handler.getGame().settingsState); //when clicked then switches from menu to game	
+			}
+		}));
+		
 	}
 	@Override
 	public void update() {

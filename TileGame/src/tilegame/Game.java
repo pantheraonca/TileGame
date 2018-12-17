@@ -3,6 +3,9 @@ package tilegame;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import tilegame.difficulty.Difficulty;
+import tilegame.difficulty.DifficultyState;
 import tilegame.display.Display;
 import tilegame.graphics.Assets;
 import tilegame.graphics.PlayerCamera;
@@ -27,10 +30,14 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	private Graphics g;
 
 	//States
-	public State gameState; //can access easily when public might not be best practice
+	public GameState gameState; //can access easily when public might not be best practice
 	public MenuState menuState;
-	public State settingsState;
-
+	public SettingsState settingsState;
+	
+	//Difficulty
+	private DifficultyState difficultyState;//change to difficultylevel
+	private Difficulty difficulty;
+	
 	//Input
 	private KeyInputManager keyInputManager;
 	private MouseInputManager mouseInputManager;
@@ -68,9 +75,15 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		handler = new Handler(this);
 
 		gameState = new GameState(handler); //what object do we pass it? we are in the game class so we use this 
-		menuState = new MenuState(handler);
 		settingsState = new SettingsState(handler);
+		menuState = new MenuState(handler);
 		State.setState(menuState); //put back to menu state to start at menu state	
+	
+		//Difficultylevel
+		difficulty = Difficulty.EASY;
+		difficultyState = new DifficultyState(handler, difficulty);
+		//difficultyState.setDifficultyParameters; //kann glaub raus
+		
 	}
 
 	private void update() { //updates variables positions etc.
@@ -195,6 +208,16 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 
 	public void setPlayerCamera(PlayerCamera playerCamera) {
 		this.playerCamera = playerCamera;
+	}
+
+
+	public DifficultyState getDifficultyState() {
+		return difficultyState;
+	}
+
+
+	public void setDifficultyState(DifficultyState difficultyState) {
+		this.difficultyState = difficultyState;
 	}
 	
 	

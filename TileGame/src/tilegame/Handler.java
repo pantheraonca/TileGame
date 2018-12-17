@@ -1,5 +1,6 @@
 package tilegame;
 
+import tilegame.difficulty.DifficultyState;
 import tilegame.fields.Field;
 import tilegame.graphics.PlayerCamera;
 import tilegame.input.KeyInputManager;
@@ -54,4 +55,40 @@ public class Handler {
 	public PlayerCamera getPlayerCamera() {
 		return game.getPlayerCamera();
 	}
+	
+	public int getVisibilityLevel() {
+		return game.gameState.getShadow().getVisibilityLevel();
+	}
+		
+	public void setVisibilityLevel(int visibilityLevel) {
+		
+		game.gameState.getShadow().setVisibilityLevel(visibilityLevel);
+	}
+	
+	/*public Difficulty getDifficulty() {
+		return game.getDifficulty();
+	}
+
+
+	public void setDifficulty(Difficulty difficulty) {
+		game.setDifficulty(difficulty);
+	}*/
+	
+	public UIManager getSettingsUiManager() {
+		return game.settingsState.getSettingsUiManager();
+	}
+	
+	public DifficultyState getDifficultyState() {
+		return game.getDifficultyState();
+	}
+
+
+	public void setDifficultyState(DifficultyState difficultyState) {
+		game.setDifficultyState(difficultyState); 
+	}
+
+	public void setSettingsUiManager(UIManager settingsUiManager) {
+		game.settingsState.setSettingsUiManager(settingsUiManager);
+	}
+	
 }

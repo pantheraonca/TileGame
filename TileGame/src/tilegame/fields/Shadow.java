@@ -54,7 +54,6 @@ public class Shadow {
 		
 		noRenderY = (int) (handler.getPlayerCamera().getyOffset()/Tile.TILE_HEIGHT);	
 		noRenderX = (int) (handler.getPlayerCamera().getxOffset()/Tile.TILE_WIDTH);
-		visibilityLevel = 2;
 		
 		for(int y = 0; y < height; y++) {
 				for(int x = 0; x < width; x++) {
@@ -64,4 +63,14 @@ public class Shadow {
 			}
 		}
 	}
+
+	public int getVisibilityLevel() {
+		return visibilityLevel;
+	}
+
+	public void setVisibilityLevel(int visibilityLevel) {
+		this.visibilityLevel = visibilityLevel;
+	}
+	
+	
 }
