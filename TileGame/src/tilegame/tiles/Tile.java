@@ -13,7 +13,7 @@ public class Tile {
 	public static Tile dirtTile = new DirtTile(2); //spieler loost 2 energy statt einer auf dirt tiles
 	public static Tile shadowTile = new ShadowTile(3);
 	public static Tile energyTile = new EnergyTile(4); //spieler gains 2 energy by moving over this tile
-
+	public static Tile magmaTile = new MagmaTile(5); //player dies
 
 
 	//CLASS

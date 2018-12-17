@@ -12,9 +12,8 @@ import tilegame.utils.Utils;
 
 public class Field {
 
-
 	private Handler handler;
-	private int positioner = 32;
+	private int positioner = 32; //am besten zu nem final variable 32 pixel oder sowat und das überall benutzen so das man das ganze game scalen kann
 	private int width = 20, height = 20; //fieldsize
 	private int spawnX = positioner * 10, spawnY = positioner * 2;
 	private int energy = 200; //energy gets set here
@@ -68,22 +67,22 @@ public class Field {
 		entityManager.render(g);
 
 	}
-
+	
 
 	public Tile getTile(int x, int y) {
 		if(x < 0 || y < 0 || x >= width || y >= height)
-			return Tile.grassTile; //telling the game if player is out of map that he is standing on a grass tile so that the game doesnt crash
-//DIEEEEEE
+			return Tile.magmaTile; //telling the game if player is out of map that he is standing on a magma tile so that the game doesnt crash
+		//handler.getField().getEntityManager().getPlayer().die(); //player dies when he moves out of the field
 
 		Tile t = Tile.tiles[fieldTiles[x][y]];
 		if(t == null)
 			return Tile.grassTile;
-		return t; //if tile id number 5 when you dont have that id in the array you will end up of that tile being null so programm has a problem 
+		return t; //if tile id number eg. 8 when you dont have that id in the array you will end up of that tile being null so programm has a problem 
 	}
 
 
 	private void loadField(String path) {
-		String identities = "00000000000000000124"; //around 5% each are stone dirt and energy tiles
+		String identities = "00000000000000001245"; //around 5% each are stone dirt and energy tiles
 		String randomString = "";
 		int length = width * height * 2; //so kann man oben die fieldsize verändern
 
@@ -96,7 +95,6 @@ public class Field {
 					text[i] = ' ';					
 				}									
 				else {						
-
 					text[i] = identities.charAt(r.nextInt(identities.length()));
 				}
 			}
@@ -127,7 +125,7 @@ public class Field {
 		return spawnArray;
 	}
 
-	//Getters Setters
+	//GETTERS SETTERS
 
 
 	public int getWidth() {

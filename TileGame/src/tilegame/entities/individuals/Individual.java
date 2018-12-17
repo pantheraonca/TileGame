@@ -8,8 +8,8 @@ public abstract class Individual extends Entity {
 
 
 	public static final int DEFAULT_SPEED = 32;
-	public static final int DEFAULT_INDIVIDUAL_WIDTH = 32,
-			DEFAULT_INDIVIDUAL_HEIGHT = 32;
+	public static final int DEFAULT_INDIVIDUAL_WIDTH = 32;
+	public static final int DEFAULT_INDIVIDUAL_HEIGHT = 32;
 
 	protected int speed;
 	protected int xMove, yMove;
@@ -29,28 +29,23 @@ public abstract class Individual extends Entity {
 			moveY();
 	}
 
-	//find solution for sliding problem then you can remove the - 1 stuff and should be able to move from tile to tile truely
-
 	public void moveX() {
 		if(xMove > 0) {//RIGHT
 
-			int tx = (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH; //gives you the tile coordinates of the tile you are trying to move into
-
-			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
-					!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
+			int tx = (x + xMove ) / Tile.TILE_WIDTH; //gives you the tile coordinates of the tile you are trying to move into
+			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT)) {
 				x += xMove;
 			}else {
-				x = tx * Tile.TILE_WIDTH - bounds.x - bounds.width - 1; //check ich nicht episode 23
+				x = tx * Tile.TILE_WIDTH - bounds.x - bounds.width;
 			}
 
 		}else if(xMove < 0) {//LEFT
 			int tx = (int) ((x + xMove + bounds.x) / Tile.TILE_WIDTH); //gives you the tile coordinates of the tile you are trying to move into
 
-			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
-					!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
+			if(!collisionWithTile(tx, (int) (y) / Tile.TILE_HEIGHT)) {
 				x += xMove;
 			}else {
-				x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
+				x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH;
 
 			}
 		}
@@ -59,23 +54,21 @@ public abstract class Individual extends Entity {
 	public void moveY() {
 		if(yMove < 0) {//UP
 
-			int ty = (y + yMove + bounds.y)/ Tile.TILE_HEIGHT; 
+			int ty = (y + yMove)/ Tile.TILE_HEIGHT; 
 
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) && //muss man noch typecasten?? ich glaube ja wegen boolean zu int
-					!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
+			if(!collisionWithTile((int) (x) / Tile.TILE_WIDTH, ty)) {
 				y += yMove;
 			}else {
-				y = ty * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
+				y = ty * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT;
 			}
 
 		}else if(yMove > 0) {//DOWN
-			int ty = (y + yMove + bounds.y + bounds.height)/ Tile.TILE_HEIGHT; 
+			int ty = (y + yMove)/ Tile.TILE_HEIGHT; 
 
-			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
-					!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
+			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty)) {
 				y += yMove;
 			}else {
-				y = ty * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1; //minus one because of sliding problem aber check ich ncith ganz
+				y = ty * Tile.TILE_HEIGHT - bounds.height;
 			}
 		}
 	}

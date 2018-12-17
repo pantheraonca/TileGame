@@ -17,17 +17,10 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 	private long lastAttackTimer, attackCooldown = 200, attackTimer = attackCooldown;
 	private long lastMoveTimer, moveCooldown = 200, moveTimer = moveCooldown;
 
-
+	//make a variable playerpower  that gets stronger per killed enemy feed it in instead of amt in hurtmethod
 
 	public Player(Handler handler, int x, int y) {
 		super(handler, x, y, Individual.DEFAULT_INDIVIDUAL_WIDTH, Individual.DEFAULT_INDIVIDUAL_HEIGHT);
-
-		/*bounds.x = 32;	//wierd stuff is happening if I change these variables
-		bounds.y = 32;
-		bounds.width = 32; //maybe useful for getting the player directly next to the object
-		bounds.height = 32; //probably dont need this this is the collision box on the player 
-		 */
-
 	}
 
 	@Override
@@ -96,7 +89,6 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 		State.setState(handler.getGame().menuState); //goes back to menu state but does not reset menustate so start button is pressed
 		State.CheckScore(); //checks if new highscore has to be set
 		State.setYourScore(0);//aber erst wenn mit highscore verglichen ist passt aber 
-
 	}
 
 	private void getInput() {
@@ -129,6 +121,6 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 		g.drawImage(Assets.player,  x, y, width, height, null);
 		//width and height rescales the player image
 	}
-
+	
 }
 

@@ -32,14 +32,14 @@ public abstract class Entity { //abstract why
 
 	public abstract void render(Graphics g);
 
-	public abstract void die();
-
+	public abstract void die(); //warum isch des hier?
+	
 	public void hurt(int amt) {
 		energy -= amt;
 		if(energy <= 0) {
 			active = false;
 			die(); //ich glaub jetzt bekommen wir nicht mehr punkte wenn wir sterben lass ma noch checken
-		}	
+		}
 	}
 
 	public boolean checkEntityCollisions(int xOffset, int yOffset) {
