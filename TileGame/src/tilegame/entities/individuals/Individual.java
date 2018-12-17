@@ -7,14 +7,12 @@ import tilegame.tiles.Tile;
 public abstract class Individual extends Entity {
 
 	
-	public static final float DEFAULT_SPEED = 32;
+	public static final int DEFAULT_SPEED = 32;
 	public static final int DEFAULT_INDIVIDUAL_WIDTH = 32,
 							DEFAULT_INDIVIDUAL_HEIGHT = 32;
 	
-	
-	
-	protected float speed;
-	protected float xMove, yMove;
+	protected int speed;
+	protected int xMove, yMove;
 	
 	public Individual(Handler handler, int x, int y, int width, int height) {
 		super(handler, x, y, width, height); //leads to entity classes contructor
@@ -25,9 +23,9 @@ public abstract class Individual extends Entity {
 	}
 	
 	public void move() {
-		if(!checkEntityCollisions(xMove, 0f))
+		if(!checkEntityCollisions(xMove, 0)) //vllt beide wieder 0f machen wenn nicht klappt
 			moveX(); //this way you can still move up and down and are not stuck in the y axis when collision in x direction happens
-		if(!checkEntityCollisions(0f, yMove))
+		if(!checkEntityCollisions(0, yMove))
 			moveY();
 	}
 	
@@ -36,7 +34,7 @@ public abstract class Individual extends Entity {
 	public void moveX() {
 		if(xMove > 0) {// moving right
 			
-			int tx = (int) ((x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH); //gives you the tile coordinates of the tile you are trying to move into
+			int tx = (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH; //gives you the tile coordinates of the tile you are trying to move into
 			
 			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
 				!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
@@ -61,7 +59,7 @@ public abstract class Individual extends Entity {
 	public void moveY() {
 		if(yMove < 0) {//UP
 			
-			int ty = (int) (y + yMove + bounds.y)/ Tile.TILE_HEIGHT; 
+			int ty = (y + yMove + bounds.y)/ Tile.TILE_HEIGHT; //muss man noch typecasten?? ich glaube ja wegen boolean zu int
 			
 			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
 					!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
@@ -71,7 +69,7 @@ public abstract class Individual extends Entity {
 			}
 			
 		}else if(yMove > 0) {//DOWN
-			int ty = (int) (y + yMove + bounds.y + bounds.height)/ Tile.TILE_HEIGHT; 
+			int ty = (y + yMove + bounds.y + bounds.height)/ Tile.TILE_HEIGHT; 
 			
 			if(!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
 					!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
@@ -83,24 +81,24 @@ public abstract class Individual extends Entity {
 	}
 	
 	protected boolean collisionWithTile(int x, int y) {
-		return handler.getField().getTile(x, y).isSolid();
+		return handler.getField().getTile(x, y).isSolid(); //returns true if tile is solid
 	}
 	
 	//GETTERS SETTERS
 	
-	public float getxMove() {
+	public int getxMove() {
 		return xMove;
 	}
 
-	public void setxMove(float xMove) {
+	public void setxMove(int xMove) {
 		this.xMove = xMove;
 	}
 
-	public float getyMove() {
+	public int getyMove() {
 		return yMove;
 	}
 
-	public void setyMove(float yMove) {
+	public void setyMove(int yMove) {
 		this.yMove = yMove;
 	}
 
@@ -112,11 +110,11 @@ public abstract class Individual extends Entity {
 		this.energy = energy;
 	}
 
-	public float getSpeed() {
+	public int getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed(float speed) {
+	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 

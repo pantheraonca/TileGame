@@ -5,7 +5,8 @@ import java.util.Random;
 import tilegame.Handler;
 import tilegame.entities.EntityManager;
 import tilegame.entities.individuals.Player;
-import tilegame.entities.statics.Tree;
+import tilegame.entities.statics.Grail;
+import tilegame.entities.statics.Enemy;
 import tilegame.tiles.Tile;
 import tilegame.utils.Utils;
 
@@ -14,27 +15,46 @@ public class Field {
 
 	@SuppressWarnings("unused") //suppresses warning that handler is not used
 	private Handler handler;
-	private int width = 20, height = 20;
-	private int spawnX = 320, spawnY = 32;
+	private int positioner = 32;
+	private int width = 20, height = 20; //fieldsize
+	private int spawnX = positioner * 10, spawnY = positioner * 2;
+	private int energy = 200; //energy gets set here
 	private int[][] fieldTiles; //multidimensional array
-
+	private int[] spawnArray = new int[24];
+	
 	//Entities
 	private EntityManager entityManager;
 	
 	
 	public Field(Handler handler, String path) { 
 		this.handler = handler; //was: this.setHandler(handler); before
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
-		entityManager.addEntity(new Tree(handler, 100 ,100));
-		entityManager.addEntity(new Tree(handler, 100 ,164));
-		entityManager.addEntity(new Tree(handler, 164 ,164));
-		entityManager.addEntity(new Tree(handler, 164 ,100));
+		entityManager = new EntityManager(handler, new Player(handler, spawnX, spawnY)); //what are the numbers 
 		
-		loadField(path); 
+		entityManager.addEntity(new Grail(handler, positioner * 10, positioner * 19));
 		
-		entityManager.getPlayer().setX(spawnX);
-		entityManager.getPlayer().setY(spawnY);
+		randomSpawn(); //maybe make forloop and be able to set number of enemies
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[0], positioner * spawnArray[1]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[2], positioner * spawnArray[3]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[4], positioner * spawnArray[5]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[6], positioner * spawnArray[7]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[8], positioner * spawnArray[9]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[10], positioner * spawnArray[11]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[12], positioner * spawnArray[13]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[14], positioner * spawnArray[15]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[16], positioner * spawnArray[17]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[18], positioner * spawnArray[19]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[20], positioner * spawnArray[21]));
+		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[22], positioner * spawnArray[23]));
+		
+		loadField(path); //sollte der string path heißen? ist kein path mehr
+		
+		//entityManager.getPlayer().setX(spawnX); brauchmer glaub nemme
+		//entityManager.getPlayer().setY(spawnY);
+		
+		entityManager.getPlayer().setEnergy(energy); //why do we do this here ???
 	}
+	
+	
 	public void update() {
 		entityManager.update();
 		
@@ -67,9 +87,9 @@ public class Field {
 	
 
 	private void loadField(String path) {
-		String identities = "0000000000000";
+		String identities = "00000000000000000124"; //around 5% each are stone dirt and energy tiles
 		String randomString = "";
-		int length = 800;
+		int length = width * height * 2; //so kann man oben die fieldsize verändern
 	
 		Random r = new Random();
 	
@@ -88,7 +108,7 @@ public class Field {
 			for(int i = 0; i < text.length; i++) {
 				randomString += text[i];
 			}
-			System.out.print(randomString);//kann wech glaub
+			//System.out.print(randomString);//kann wech glaub
 		}
 		
 		String[] randomArray = randomString.split("\\s+");
@@ -98,12 +118,18 @@ public class Field {
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
 				fieldTiles[x][y] = Utils.parseInt(randomArray[x + y * width]);
-				System.out.println(fieldTiles);
 			}
 		}
 	}
-		
 	
+	private int[] randomSpawn() {
+		Random rand_nr = new Random();
+		
+		for(int i = 0; i < spawnArray.length; i++) {
+			spawnArray[i] = rand_nr.nextInt(20);
+		}
+		return spawnArray;
+	}
 
 	//Getters Setters
 	

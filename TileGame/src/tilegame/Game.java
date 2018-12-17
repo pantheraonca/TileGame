@@ -21,7 +21,7 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 
 	private boolean running = false;
 	private Thread thread; //this is a thread object
-	//private int highscore = -1;
+	
 	
 	private BufferStrategy bs; //tells the computer how to draw things to the screen
 	private Graphics g;
@@ -196,6 +196,7 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	public void setPlayerCamera(PlayerCamera playerCamera) {
 		this.playerCamera = playerCamera;
 	}
+	
 	
 	
 	

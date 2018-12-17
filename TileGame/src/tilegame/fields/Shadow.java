@@ -3,14 +3,8 @@ package tilegame.fields;
 import java.awt.Graphics;
 
 import tilegame.Handler;
-import tilegame.entities.EntityManager;
-import tilegame.entities.individuals.Player;
-import tilegame.graphics.PlayerCamera;
 import tilegame.tiles.Tile;
-import tilegame.entities.Entity;
 import tilegame.Game;
-import tilegame.Launcher;
-import tilegame.fields.Field;
 
 
 public class Shadow {
@@ -18,9 +12,9 @@ public class Shadow {
 	
 	private int width, height; // die muss ich noch getten aus der field class und nicht selbst setten
 	private int[][] shadowTiles; //multidimensional array
-	private Tile shadowTile;
-	private float xOffset;
-	private float yOffset;
+	//private Tile shadowTile;
+	//private float xOffset;
+	//private float yOffset;
 	protected Game game;
 	private Handler handler;
 	private int noRenderX;

@@ -16,7 +16,7 @@ public class GameState extends State {
 		super(handler);
 		field = new Field(handler, null);
 		handler.setField(field);
-		shadow =new Shadow(handler, handler.getGame(), 20, 20); //in shadow class noch size automatisch anpassen
+		shadow = new Shadow(handler, handler.getGame(), 20, 20); //in shadow class noch size automatisch anpassen
 		
 		
 	
@@ -32,7 +32,7 @@ public class GameState extends State {
 	public void render(Graphics g) {
 
 		field.render(g);
-		shadow.render(g);
+		//shadow.render(g);
 		
 		if(State.getHighScore().equals("")) {
 			State.setHighScore(this.ReadHighScore());

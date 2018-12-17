@@ -4,31 +4,32 @@ import java.awt.Graphics;
 
 import tilegame.Handler;
 import tilegame.graphics.Assets;
+import tilegame.states.State;
 import tilegame.tiles.Tile;
 
 
-public class Tree extends StaticEntity {
+public class Enemy extends StaticEntity {
 
-	public Tree(Handler handler, int x, int y) {
+	public Enemy(Handler handler, int x, int y) {
 		super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
-		
+
 	}
 
 	@Override
 	public void update() {
-	
+		
 	}	
 	
 	@Override
 	public void die() {
-		
+		State.setYourScore(x = State.getYourScore() + 20);
 	}
 
 		
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.tree, (int) (x), (int) (y), width, height, null);
-		//check nicht warum das x -handler.getGamecameraETC. ist
+		g.drawImage(Assets.enemy, (int) (x), (int) (y), width, height, null);
+		
 	}
 
 }

@@ -10,8 +10,9 @@ public class Tile {
 	public static Tile[] tiles = new Tile[256]; //static is accessible from everywhere 
 	public static Tile grassTile = new GrassTile(0); //this sets the id of the tile
 	public static Tile rockTile = new RockTile(1); //Tile so we know rocktile is a tile and then the method on its own (RockTile())
-	public static Tile dirtTile = new DirtTile(2); //spieler rutscht aus
+	public static Tile dirtTile = new DirtTile(2); //spieler loost 2 energy statt einer auf dirt tiles
 	public static Tile shadowTile = new ShadowTile(3);
+	public static Tile energyTile = new EnergyTile(4); //spieler gains 2 energy by moving over this tile
 
 	
 	

@@ -72,7 +72,7 @@ public abstract class State { //what is an abstract class
 		if (yourScore > Integer.parseInt(highScore.split(":")[1])) { //converts the part that contains the highscore string to an int
 			//user has set new highscore
 			String name = JOptionPane.showInputDialog("New Highscore. Enter name:");
-			highScore = name + ":" + yourScore;
+			highScore = name + ":" + yourScore; //show in different color!!!
 			
 			File scoreFile = new File("highscore.dat");
 			if(!scoreFile.exists()) { //using file variable to check if the file exists

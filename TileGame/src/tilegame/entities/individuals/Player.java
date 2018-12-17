@@ -3,28 +3,34 @@ package tilegame.entities.individuals;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import javax.swing.JOptionPane;
+
 import tilegame.Handler;
 import tilegame.entities.Entity;
 import tilegame.graphics.Assets;
-import tilegame.states.MenuState;
 import tilegame.states.State;
 
 public class Player extends Individual { //somehow becasue this isnt an abstract class we need the tick and render method this was not needed in the player class which extends the entity class which has a tick render method 
 
 	
 	//Attack timer
-	private long lastAttackTimer, attackCooldown = 100, attackTimer = attackCooldown;
+	private long lastAttackTimer, attackCooldown = 200, attackTimer = attackCooldown;
 	private long lastMoveTimer, moveCooldown = 200, moveTimer = moveCooldown;
+	
 	
 	
 	public Player(Handler handler, int x, int y) {
 		super(handler, x, y, Individual.DEFAULT_INDIVIDUAL_WIDTH, Individual.DEFAULT_INDIVIDUAL_HEIGHT);
 	
-		//bounds.x = 16;
-		//bounds.y = 32;
-		//bounds.width = 32; //maybe useful for getting the player directly next to the object
-		//bounds.height = 32; //probably dont need this this is the collision box on the player 
+		/*bounds.x = 32;	//wierd stuff is happening if I change these variables
+		bounds.y = 32;
+		bounds.width = 32; //maybe useful for getting the player directly next to the object
+		bounds.height = 32; //probably dont need this this is the collision box on the player 
+		*/
+		
 	}
+	
+	
 
 	@Override
 	public void update() {
@@ -32,11 +38,11 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 		getInput();
 		move();
 		
+		
 		//Attack
 		checkAttacks();
 		
 		//PlayerCamera
-		
 		handler.getPlayerCamera().centerOn(this);
 		
 		
@@ -56,7 +62,7 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 		
 		if(handler.getKeyInputManager().aUp) {
 			ar.x = cb.x + cb.width / 2 - arSize / 2;
-			ar.y = cb.y - arSize;	
+			ar.y = cb.y - arSize;
 		}
 		else if(handler.getKeyInputManager().aDown) {
 			ar.x = cb.x + cb.width / 2 - arSize / 2;
@@ -66,7 +72,7 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 			ar.x = cb.x - arSize;
 			ar.y = cb.y + cb.height / 2 - arSize / 2;
 		}
-		else if(handler.getKeyInputManager().aLeft) {
+		else if(handler.getKeyInputManager().aRight) {
 			ar.x = cb.x + cb.width;
 			ar.y = cb.y + cb.height / 2 - arSize / 2;
 		}
@@ -81,7 +87,7 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 				continue; //means if the entity is ourself just continue to the next entity in the arraylist b/c we dont want to hurt ourselves
 		
 			if(e.getCollisionBounds(0, 0).intersects(ar)) { //if we are in attack range basically??
-				e.hurt(2);
+				e.hurt(1);
 				handler.getField().getEntityManager().getPlayer().hurt(1); //this will kill my entity
 				return;
 			}
@@ -90,10 +96,10 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 	
 	@Override
 	public void die() {
-		System.out.println("You loose!");
+		JOptionPane.showMessageDialog(null, "You died!", null, 1); //popup when you die
 		handler.getMouseInputManager().setUIManager(handler.getUIManager()); //setting this back to the UiManager is important to the buttons can be pressed again 
 		State.setState(handler.getGame().menuState); //goes back to menu state but does not reset menustate so start button is pressed
-		State.CheckScore();
+		State.CheckScore(); //checks if new highscore has to be set
 		State.setYourScore(0);//aber erst wenn mit highscore verglichen ist passt aber 
 		
 	}
@@ -108,19 +114,24 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 			return; //returns and does not run any of the code bellow
 		
 		if(handler.getKeyInputManager().up)
-			yMove =- speed;
+				yMove =- speed;
 		else if(handler.getKeyInputManager().down)
-			yMove =+ speed;
+				yMove =+ speed;
 		else if(handler.getKeyInputManager().left)
-			xMove =- speed;
+				xMove =- speed;
 		else if(handler.getKeyInputManager().right)
-			xMove =+ speed;
+				xMove =+ speed;
 		else {
 			return; //if none of those are pressed then just return from this method without doing anything
 		}
 		
+		handler.getField().getEntityManager().getPlayer().hurt(1); //sucks energy when player is moving
 		moveTimer = 0; //player has moved now and should wait another 800 milliseconds
 	}
+	
+	//public boolean canMove(int tX, int tY) {
+	//	this method is called checkEntityCollisions und ist in Individual
+	//}
 	
 	//old movement stuff
 			/*if(game.getKeyInputManager().up)

@@ -15,7 +15,8 @@ public abstract class Entity { //abstractwhy
 	protected Rectangle bounds;
 	protected int energy;
 	protected boolean active = true; //whether entity is there or not
-	public static final int DEFAULT_ENERGY = 2;
+	
+	public static int DEFAULT_ENERGY = 4;
 	
 	public Entity(Handler handler, int x, int y, int width, int height) {
 		this.handler = handler;
@@ -38,17 +39,25 @@ public abstract class Entity { //abstractwhy
 		energy -= amt;
 		if(energy <= 0) {
 			active = false;
-			die();
-			State.setYourScore(x = State.getYourScore() + 40);
-			//for(Entity e : handler.getField().getEntityManager().getEntities()) { //for every entity e in our arraylist(the part after the doppelpunkt
-			//	if(e.equals(handler.getField().getEntityManager().getPlayer())) { //if the entity is not the player then add 10 points to score
-			//		return;
-			//	}
-			//} //klappt vllt noch nicht ganz aber ich will nicht das wenn spieler stirbt das wir 10 punkte geben
+			die(); //ich glaub jetzt bekommen wir nicht mehr punkte wenn wir sterben lass ma noch checken
 		}	
 	}
 	
-	public boolean checkEntityCollisions(float xOffset, float yOffset) {
+	public boolean checkEntityCollisions(int xOffset, int yOffset) {
+		for(Entity e : handler.getField().getEntityManager().getEntities()) {
+			if(e.equals(this))//so it does not check for collisions with itself
+				continue;
+			if(e.getCollisionBounds(0, 0).intersects(getCollisionBounds(xOffset, yOffset)))
+				return true;
+		}
+		return false;
+	}
+	
+	public Rectangle getCollisionBounds(int xOffset, int yOffset) {
+		return new Rectangle(x + bounds.x + xOffset, y + bounds.y + yOffset, bounds.width, bounds.height);
+	}
+	
+	/*public boolean checkEntityCollisions(float xOffset, float yOffset) {
 		for(Entity e : handler.getField().getEntityManager().getEntities()) {
 			if(e.equals(this))//so it does not check for collisions with itself
 				continue;
@@ -60,9 +69,12 @@ public abstract class Entity { //abstractwhy
 	
 	public Rectangle getCollisionBounds(float xOffset, float yOffset) {
 		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
-	}
+	}*/
 	
-	public float getX() {
+	
+	//GETTERS SETTERS
+	
+	public int getX() { //back to float
 		return x;
 	}
 
@@ -70,7 +82,7 @@ public abstract class Entity { //abstractwhy
 		this.x = x;
 	}
 
-	public float getY() {
+	public int getY() { //back to float
 		return y;
 	}
 
