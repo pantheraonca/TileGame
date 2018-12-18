@@ -42,7 +42,7 @@ public abstract class Individual extends Entity {
 			else if(collisionSpecialTile(tx, y / Tile.TILE_HEIGHT)) {
 				x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH;
 				if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
-					handler.getField().getEntityManager().getPlayer().hurt(2);
+					handler.getPlayer().hurt(2);
 				}
 				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     

@@ -90,6 +90,7 @@ public abstract class Entity { //abstract why
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
 
 	public int getEnergy() {
 		return energy;

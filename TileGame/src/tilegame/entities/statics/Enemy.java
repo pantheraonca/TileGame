@@ -44,5 +44,5 @@ public class Enemy extends StaticEntity {
 		g.drawImage(Assets.enemy, (int) (x), (int) (y), width, height, null);
 
 	}
-
+	
 }

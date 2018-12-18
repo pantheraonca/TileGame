@@ -1,6 +1,8 @@
 package tilegame;
 
 import tilegame.difficulty.DifficultyLevel;
+import tilegame.entities.EntityManager;
+import tilegame.entities.individuals.Player;
 import tilegame.fields.Field;
 import tilegame.graphics.PlayerCamera;
 import tilegame.input.KeyInputManager;
@@ -90,26 +92,40 @@ public class Handler {
 	}
 	
 	public Skills getStamina() {
-		return getField().getEntityManager().getPlayer().getStamina();
+		return getPlayer().getStamina();
 	}
 
 	public void setStamina(Skills stamina) {
-		getField().getEntityManager().getPlayer().setStamina(stamina);
+		getPlayer().setStamina(stamina);
 	}
 
 	public Skills getFighter() {
-		return getField().getEntityManager().getPlayer().getFighter();
+		return getPlayer().getFighter();
 	}
 
 	public void setFighter(Skills fighter) {
-		getField().getEntityManager().getPlayer().setFighter(fighter);;
+		getPlayer().setFighter(fighter);;
 	}
 	
 	public int getDamage() {
-		return getField().getEntityManager().getPlayer().getDamage();
+		return getPlayer().getDamage();
 	}
 
 	public void setDamage(int damage) {
-		getField().getEntityManager().getPlayer().setDamage(damage);
+		getPlayer().setDamage(damage);
+	}
+	
+	public EntityManager getEntityManager() {
+		return getField().getEntityManager();
+	}
+	public void setEntityManager(EntityManager entityManager) {
+		getField().setEntityManager(entityManager);
+	}
+	public Player getPlayer() {
+		return getEntityManager().getPlayer();
+	}
+
+	public void setPlayer(Player player) {
+		 getEntityManager().setPlayer(player);
 	}
 }

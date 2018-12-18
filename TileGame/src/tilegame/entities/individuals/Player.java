@@ -87,7 +87,7 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 
 			if(e.getCollisionBounds(0, 0).intersects(ar)) { //if we are in attack range basically??
 				e.hurt(damage); // amount that is substracted from the entities energy
-				handler.getField().getEntityManager().getPlayer().hurt(1); //if in fight with entity then player gets also hurt
+				handler.getPlayer().hurt(1); //if in fight with entity then player gets also hurt
 				return;
 			}
 		}

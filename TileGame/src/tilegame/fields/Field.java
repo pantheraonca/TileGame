@@ -146,7 +146,7 @@ public class Field {
 	public void setSpawnY(int spawnY) {
 		this.spawnY = spawnY;
 	}
-	public Handler getHandler() {
+	public Handler getHandler() { //kann glaub weg
 		return handler;
 	}
 	public void setHandler(Handler handler) {
