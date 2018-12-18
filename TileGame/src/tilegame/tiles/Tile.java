@@ -40,8 +40,17 @@ public class Tile {
 	public boolean isSolid() {
 		return false;
 	}
+	
+	public boolean isSpecial() {
+		return false;
+	}
+	
+	public void tileSpecialty() {
+	
+	}
 
 	public int getId() {
 		return id;
 	}
+	
 }

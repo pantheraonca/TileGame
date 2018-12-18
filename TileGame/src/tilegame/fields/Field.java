@@ -18,35 +18,32 @@ public class Field {
 	private int spawnX = positioner * 10, spawnY = positioner * 2;
 	private int energy = 200; //energy gets set here
 	private int[][] fieldTiles; //multidimensional array
-	private int[] spawnArray = new int[24];
-
+	private int enemyAmt = 10; //amount of enemies in the game
+	private int amtCorrection = enemyAmt + 1; //corrects because there is a mistake in the forloop and it gives one enemy less
+	private int[] spawnArray = new int[amtCorrection]; //same size as amtCorrection because somehow the array size and the amtcorrection have to be the same vlaue otherwise get error
+	
+	
 	//Entities
 	private EntityManager entityManager;
 
 
 	public Field(Handler handler, String path) { 
 		this.handler = handler;
+		//PLAYER
 		entityManager = new EntityManager(handler, new Player(handler, spawnX, spawnY));
-
+		entityManager.getPlayer().setEnergy(energy); //why do we do this here ???
+		
+		//GRAIL
 		entityManager.addEntity(new Grail(handler, positioner * 10, positioner * 19));
 
+		//ENEMIES
 		randomSpawn(); //maybe make forloop and be able to set number of enemies
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[0], positioner * spawnArray[1]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[2], positioner * spawnArray[3]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[4], positioner * spawnArray[5]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[6], positioner * spawnArray[7]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[8], positioner * spawnArray[9]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[10], positioner * spawnArray[11]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[12], positioner * spawnArray[13]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[14], positioner * spawnArray[15]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[16], positioner * spawnArray[17]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[18], positioner * spawnArray[19]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[20], positioner * spawnArray[21]));
-		entityManager.addEntity(new Enemy(handler, positioner * spawnArray[22], positioner * spawnArray[23]));
-
+		for(int i = 0; i < spawnArray.length; i++) {
+			for(int j = 1; j < amtCorrection; j++) 
+				entityManager.addEntity(new Enemy(handler, positioner * spawnArray[i], positioner * spawnArray[i=i+1]));
+		}
+		//FIELD
 		loadField(path); //sollte der string path heißen? ist kein path mehr
-
-		entityManager.getPlayer().setEnergy(energy); //why do we do this here ???
 	}
 
 
@@ -69,7 +66,7 @@ public class Field {
 	}
 	
 
-	public Tile getTile(int x, int y) {
+	public Tile getTile(int x, int y) { //this is no getter 
 		if(x < 0 || y < 0 || x >= width || y >= height)
 			return Tile.magmaTile; //telling the game if player is out of map that he is standing on a magma tile so that the game doesnt crash
 		//handler.getField().getEntityManager().getPlayer().die(); //player dies when he moves out of the field
@@ -102,7 +99,6 @@ public class Field {
 			for(int i = 0; i < text.length; i++) {
 				randomString += text[i];
 			}
-			//System.out.print(randomString);//kann wech glaub
 		}
 
 		String[] randomArray = randomString.split("\\s+");
@@ -120,7 +116,7 @@ public class Field {
 		Random rand_nr = new Random();
 
 		for(int i = 0; i < spawnArray.length; i++) {
-			spawnArray[i] = rand_nr.nextInt(20);
+			spawnArray[i] = rand_nr.nextInt(19);
 		}
 		return spawnArray;
 	}

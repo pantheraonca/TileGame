@@ -2,6 +2,7 @@ package tilegame.states;
 
 import java.awt.Graphics;
 import tilegame.Handler;
+import tilegame.difficulty.Difficulty;
 import tilegame.graphics.Assets;
 import tilegame.userinterface.ClickListener;
 import tilegame.userinterface.UIButton;
@@ -47,7 +48,7 @@ public class MenuState extends State {
 		if(State.getHighScore().equals("")) {
 			State.setHighScore(this.ReadHighScore());
 		}
-		g.drawString("Highscore: " + State.getHighScore(), 32, 32);
+		g.drawString("Highscore: " + State.getHighScore(), 10, 15);
 	}
 
 	//GETTERS SETTERS

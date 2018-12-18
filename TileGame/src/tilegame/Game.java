@@ -71,7 +71,7 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		playerCamera = new PlayerCamera (handler, 0,0);
 
 		handler = new Handler(this);
-
+		
 		gameState = new GameState(handler); //what object do we pass it? we are in the game class so we use this 
 		settingsState = new SettingsState(handler);
 		menuState = new MenuState(handler);
@@ -80,6 +80,7 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		//DIFFICULTY LEVEL
 		difficulty = Difficulty.EASY;
 		difficultyLevel = new DifficultyLevel(handler, difficulty);
+		//this does nothing
 	}
 
 	private void update() { //updates variables positions etc.
@@ -213,8 +214,4 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	public void setDifficultyState(DifficultyLevel difficultyState) {
 		this.difficultyLevel = difficultyState;
 	}
-
-
-
-
 }

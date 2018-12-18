@@ -5,6 +5,7 @@ import tilegame.fields.Field;
 import tilegame.graphics.PlayerCamera;
 import tilegame.input.KeyInputManager;
 import tilegame.input.MouseInputManager;
+import tilegame.skills.Skills;
 import tilegame.userinterface.UIManager;
 
 public class Handler {
@@ -80,4 +81,35 @@ public class Handler {
 		game.settingsState.setSettingsUiManager(settingsUiManager);
 	}
 
+	public boolean[] getSkillArray() {
+		return game.settingsState.getSkillArray();
+	}
+
+	public void setSkillArray(boolean[] skillArray) {
+		game.settingsState.setSkillArray(skillArray); 
+	}
+	
+	public Skills getStamina() {
+		return getField().getEntityManager().getPlayer().getStamina();
+	}
+
+	public void setStamina(Skills stamina) {
+		getField().getEntityManager().getPlayer().setStamina(stamina);
+	}
+
+	public Skills getFighter() {
+		return getField().getEntityManager().getPlayer().getFighter();
+	}
+
+	public void setFighter(Skills fighter) {
+		getField().getEntityManager().getPlayer().setFighter(fighter);;
+	}
+	
+	public int getDamage() {
+		return getField().getEntityManager().getPlayer().getDamage();
+	}
+
+	public void setDamage(int damage) {
+		getField().getEntityManager().getPlayer().setDamage(damage);
+	}
 }

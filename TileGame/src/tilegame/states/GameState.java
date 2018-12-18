@@ -1,5 +1,6 @@
 package tilegame.states;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import tilegame.Handler;
 import tilegame.fields.Field;
@@ -30,14 +31,15 @@ public class GameState extends State {
 	public void render(Graphics g) {
 
 		field.render(g);
-		shadow.render(g);
+		//shadow.render(g);
 
 		if(State.getHighScore().equals("")) {
 			State.setHighScore(this.ReadHighScore());
 		}
-		g.drawString("Highscore: " + State.getHighScore(), 32, 32);
-		g.drawString("Your score: " + State.getYourScore(), 32, 64);
-
+		g.setColor(Color.white);
+		g.drawString("Highscore: " + State.getHighScore(), 10, 15);
+		g.drawString("Your score: " + State.getYourScore(), 10, 30);
+		g.drawString("Energy" + handler.getField().getEntityManager().getPlayer().getEnergy(), 10, 45);
 
 	}
 

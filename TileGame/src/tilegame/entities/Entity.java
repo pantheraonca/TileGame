@@ -38,7 +38,7 @@ public abstract class Entity { //abstract why
 		energy -= amt;
 		if(energy <= 0) {
 			active = false;
-			die(); //ich glaub jetzt bekommen wir nicht mehr punkte wenn wir sterben lass ma noch checken
+			die(); //bekommen wir punkte wenn wir sterben?
 		}
 	}
 
@@ -50,7 +50,7 @@ public abstract class Entity { //abstract why
 				return true;
 		}
 		return false;
-	}
+	} //kömmer das was durnter und drüber is wegmachen???
 
 	public Rectangle getCollisionBounds(int xOffset, int yOffset) {
 		return new Rectangle(x + bounds.x + xOffset, y + bounds.y + yOffset, bounds.width, bounds.height);

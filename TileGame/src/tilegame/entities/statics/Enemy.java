@@ -23,6 +23,7 @@ public class Enemy extends StaticEntity {
 	@Override
 	public void die() {
 		State.setYourScore(x = State.getYourScore() + 20);
+		handler.getFighter().increaseSkill();  // for each enemy that dies a fighter increases its skillevel
 	}
 
 

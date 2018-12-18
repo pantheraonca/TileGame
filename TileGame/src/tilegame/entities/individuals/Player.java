@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 import tilegame.Handler;
 import tilegame.entities.Entity;
 import tilegame.graphics.Assets;
+import tilegame.skills.Fighter;
+import tilegame.skills.Skills;
+import tilegame.skills.Stamina;
 import tilegame.states.State;
 
 public class Player extends Individual { //somehow becasue this isnt an abstract class we need the tick and render method this was not needed in the player class which extends the entity class which has a tick render method 
@@ -16,11 +19,19 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 	//Attack timer
 	private long lastAttackTimer, attackCooldown = 200, attackTimer = attackCooldown;
 	private long lastMoveTimer, moveCooldown = 200, moveTimer = moveCooldown;
-
+	
+	//Skills
+	private Skills stamina, fighter;
+	private int damage;
+	
 	//make a variable playerpower  that gets stronger per killed enemy feed it in instead of amt in hurtmethod
 
 	public Player(Handler handler, int x, int y) {
 		super(handler, x, y, Individual.DEFAULT_INDIVIDUAL_WIDTH, Individual.DEFAULT_INDIVIDUAL_HEIGHT);
+		
+		stamina = new Stamina (handler);
+		fighter = new Fighter (handler);
+		damage = 1; //damage will be increased by fighter skill when skillImpact method is called
 	}
 
 	@Override
@@ -75,8 +86,8 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 				continue; //means if the entity is ourself just continue to the next entity in the arraylist b/c we dont want to hurt ourselves
 
 			if(e.getCollisionBounds(0, 0).intersects(ar)) { //if we are in attack range basically??
-				e.hurt(1);
-				handler.getField().getEntityManager().getPlayer().hurt(1); //this will kill my entity
+				e.hurt(damage); // amount that is substracted from the entities energy
+				handler.getField().getEntityManager().getPlayer().hurt(1); //if in fight with entity then player gets also hurt
 				return;
 			}
 		}
@@ -113,6 +124,7 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 		}
 
 		handler.getField().getEntityManager().getPlayer().hurt(1); //sucks energy when player is moving
+		stamina.increaseSkill(); // every input stamina skill gets increased by 1
 		moveTimer = 0; //player has moved now and should wait another 800 milliseconds
 	}
 
@@ -121,6 +133,29 @@ public class Player extends Individual { //somehow becasue this isnt an abstract
 		g.drawImage(Assets.player,  x, y, width, height, null);
 		//width and height rescales the player image
 	}
-	
+
+	public Skills getStamina() {
+		return stamina;
+	}
+
+	public void setStamina(Skills stamina) {
+		this.stamina = stamina;
+	}
+
+	public Skills getFighter() {
+		return fighter;
+	}
+
+	public void setFighter(Skills fighter) {
+		this.fighter = fighter;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
 }
 
