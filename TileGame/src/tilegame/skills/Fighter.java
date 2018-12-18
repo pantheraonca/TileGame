@@ -1,7 +1,6 @@
 package tilegame.skills;
 
 import tilegame.Handler;
-import tilegame.entities.individuals.Player;
 
 public class Fighter extends Skills {
 

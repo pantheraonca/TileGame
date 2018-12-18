@@ -5,7 +5,7 @@ import java.util.Random;
 import tilegame.Handler;
 import tilegame.entities.EntityManager;
 import tilegame.entities.individuals.Player;
-import tilegame.entities.statics.Grail;
+import tilegame.entities.statics.Boss;
 import tilegame.entities.statics.Enemy;
 import tilegame.tiles.Tile;
 import tilegame.utils.Utils;
@@ -27,29 +27,28 @@ public class Field {
 	private EntityManager entityManager;
 
 
-	public Field(Handler handler, String path) { 
+	public Field(Handler handler, String fieldString) { 
 		this.handler = handler;
 		//PLAYER
 		entityManager = new EntityManager(handler, new Player(handler, spawnX, spawnY));
 		entityManager.getPlayer().setEnergy(energy); //why do we do this here ???
 		
 		//GRAIL
-		entityManager.addEntity(new Grail(handler, positioner * 10, positioner * 19));
+		entityManager.addEntity(new Boss(handler, positioner * 10, positioner * 19));
 
 		//ENEMIES
-		randomSpawn(); //maybe make forloop and be able to set number of enemies
+		randomSpawn(); //maybe make for loop and be able to set number of enemies
 		for(int i = 0; i < spawnArray.length; i++) {
 			for(int j = 1; j < amtCorrection; j++) 
 				entityManager.addEntity(new Enemy(handler, positioner * spawnArray[i], positioner * spawnArray[i=i+1]));
 		}
 		//FIELD
-		loadField(path); //sollte der string path heißen? ist kein path mehr
+		loadField(fieldString);
 	}
 
 
 	public void update() {
 		entityManager.update();
-
 	}
 
 	public void render(Graphics g) {
@@ -78,7 +77,7 @@ public class Field {
 	}
 
 
-	private void loadField(String path) {
+	private void loadField(String fieldString) {
 		String identities = "00000000000000001245"; //around 5% each are stone dirt and energy tiles
 		String randomString = "";
 		int length = width * height * 2; //so kann man oben die fieldsize verändern
@@ -122,16 +121,13 @@ public class Field {
 	}
 
 	//GETTERS SETTERS
-
-
+	
 	public int getWidth() {
 		return width;
 	}
-
 	public int getHeight() {
 		return height;
 	}
-
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

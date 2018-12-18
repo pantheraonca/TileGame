@@ -2,7 +2,6 @@ package tilegame.states;
 
 import java.awt.Graphics;
 import tilegame.Handler;
-import tilegame.difficulty.Difficulty;
 import tilegame.graphics.Assets;
 import tilegame.userinterface.ClickListener;
 import tilegame.userinterface.UIButton;

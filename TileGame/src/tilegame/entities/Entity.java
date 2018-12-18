@@ -106,6 +106,4 @@ public abstract class Entity { //abstract why
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
-
 }

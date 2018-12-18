@@ -6,7 +6,7 @@ public class Assets {
 
 	public static final int width = 16, height = 16;
 
-	public static BufferedImage player, dirt, grass, rock, enemy, shadow, energy, grail, easy, medium, hard, back, settings, magma, fighter, stamina;
+	public static BufferedImage player, dirt, grass, rock, enemy, shadow, energy, boss, easy, medium, hard, back, settings, magma, fighter, stamina;
 	public static BufferedImage[] btn_start;
 
 
@@ -20,7 +20,7 @@ public class Assets {
 		enemy = sheet.crop(width * 8, height * 7, width, height);
 		shadow = sheet.crop(width * 1, height * 7, width, height);
 		energy = sheet.crop(width * 2, height * 10, width, height);
-		grail = sheet.crop(width * 7, height * 1, width, height);
+		boss = sheet.crop(width * 7, height * 1, width, height);
 		easy = sheet.crop(width * 12, height * 8, width, height);
 		medium = sheet.crop(width * 6, height * 4, width, height);
 		hard = sheet.crop(width * 8, 0, width, height);

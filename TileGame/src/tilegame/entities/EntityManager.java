@@ -18,6 +18,7 @@ public class EntityManager {
 		entities = new ArrayList<Entity>();
 		addEntity(player); // should tree be here and not in field ??!!
 	}
+	
 
 	public void update() {	
 		for(int i = 0; i < entities.size(); i++) {
