@@ -1,8 +1,10 @@
 package tilegame.entities.statics;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 import tilegame.Handler;
+import tilegame.entities.Entity;
 import tilegame.graphics.Assets;
 import tilegame.states.State;
 import tilegame.tiles.Tile;
@@ -10,9 +12,19 @@ import tilegame.tiles.Tile;
 
 public class Enemy extends StaticEntity {
 
+
+	private Entity enemy;
+	private int randomEnergy;
+	
 	public Enemy(Handler handler, int x, int y) {
 		super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
 
+		Random rand_nr = new Random();
+		randomEnergy = rand_nr.nextInt(10);
+		
+		enemy = this;
+		enemy.setEnergy(randomEnergy);
+		
 	}
 
 	@Override

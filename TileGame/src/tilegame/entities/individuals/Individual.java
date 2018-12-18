@@ -140,7 +140,7 @@ public abstract class Individual extends Entity {
 	}
 	
 	protected boolean collisionSpecialTile(int x, int y) {
-		return handler.getField().getTile(x, y).isSpecial(); //returns true if tile is solid
+		return handler.getField().getTile(x, y).isSpecial(); //returns true if tile is special
 	}
 	
 
