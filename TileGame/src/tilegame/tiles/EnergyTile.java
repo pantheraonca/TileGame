@@ -13,11 +13,5 @@ public class EnergyTile extends Tile{
 	public boolean isSpecial() {
 		return true;
 	}
-	
-	public void tileSpecialty() {
-		System.out.println("tilespecialty of energy tile was called");
-		//handler.getField().getEntityManager().getPlayer().setEnergy(handler.getField().getEntityManager().getPlayer().getEnergy() + 2)
-	}
-	
 }
 

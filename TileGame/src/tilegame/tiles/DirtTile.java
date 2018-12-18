@@ -12,9 +12,4 @@ public class DirtTile extends Tile {
 	public boolean isSpecial() {
 		return true;
 	}
-
-	public void tileSpecialty() {
-		System.out.println("tilespecialty of dirt tile was called");
-		//hanlder.getField().getEntityManager().getPlayer().hurt(2);
-	}
 }

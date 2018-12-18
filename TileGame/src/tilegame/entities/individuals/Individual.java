@@ -41,7 +41,15 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(tx, y / Tile.TILE_HEIGHT)) {
 				x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH;
-				handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).tileSpecialty();
+				if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
+					handler.getField().getEntityManager().getPlayer().hurt(2);
+				}
+				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
+					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+				}
+				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
+					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
+				}
 			}
 			
 			else {
@@ -57,7 +65,15 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(tx, y / Tile.TILE_HEIGHT)) {
 				x = tx * Tile.TILE_WIDTH - Tile.TILE_WIDTH;
-				handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).tileSpecialty();
+				if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
+					handler.getField().getEntityManager().getPlayer().hurt(2);
+				}
+				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
+					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+				}
+				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
+					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
+				}
 			}
 			
 			else {
@@ -78,7 +94,15 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(x / Tile.TILE_WIDTH, ty)) {
 				y = ty * Tile.TILE_HEIGHT - Tile.TILE_HEIGHT;
-				handler.getField().getTile(x / Tile.TILE_WIDTH, ty).tileSpecialty();
+				if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 2) {
+					handler.getField().getEntityManager().getPlayer().hurt(2);
+				}
+				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
+					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+				}
+				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
+					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
+				}
 			}
 			
 			else {
@@ -94,7 +118,15 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(x / Tile.TILE_WIDTH, ty)) {
 				y = ty * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT;
-				handler.getField().getTile(x / Tile.TILE_WIDTH, ty).tileSpecialty();
+				if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 2) {
+					handler.getField().getEntityManager().getPlayer().hurt(2);
+				}
+				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
+					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+				}
+				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
+					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
+				}
 			}
 			
 			else {

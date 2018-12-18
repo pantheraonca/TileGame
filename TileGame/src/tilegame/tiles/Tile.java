@@ -44,13 +44,8 @@ public class Tile {
 	public boolean isSpecial() {
 		return false;
 	}
-	
-	public void tileSpecialty() {
-	
-	}
 
 	public int getId() {
 		return id;
-	}
-	
+	}	
 }

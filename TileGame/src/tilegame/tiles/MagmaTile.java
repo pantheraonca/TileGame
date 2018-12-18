@@ -12,10 +12,5 @@ public class MagmaTile extends Tile{
 	public boolean isSpecial() {
 		return true;
 	}
-	
-	public void tileSpecialty() {
-		System.out.println("tilespecialty of magma tile was called");
-		//hanlder.getField().getEntityManager().getPlayer().hurt(hanlder.getField().getEntityManager().getPlayer().getEnergy() + 1)
-	}
 }
 
