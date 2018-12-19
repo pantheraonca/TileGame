@@ -26,7 +26,7 @@ public class Field {
 	private EntityManager entityManager;
 
 	//CONSTRUCTOR
-	public Field(Handler handler, String fieldString) { 
+	public Field(Handler handler) { 
 		this.handler = handler;
 		
 		//PLAYER
@@ -44,7 +44,7 @@ public class Field {
 		}
 		
 		//FIELD
-		loadField(fieldString);
+		loadField();
 	}
 
 	public void update() {
@@ -63,16 +63,6 @@ public class Field {
 		//ENTITIES
 		entityManager.render(g);
 	}
-	/*public Tile changeToMagma(int x, int y) {
-		if(collisionSpecialTile(x, (y / Tile.TILE_HEIGHT)))
-			return Tile.magmaTile;
-		else
-			return Tile.magmaTile;
-	}
-	
-	protected boolean collisionSpecialTile(int x, int y) {
-		return handler.getField().obtainTile(x, y).isSpecial(); //returns true if tile is special
-	}*/
 
 	public Tile obtainTile(int x, int y) {
 		if(x < 0 || y < 0 || x >= width || y >= height)
@@ -83,15 +73,15 @@ public class Field {
 		return t; //if tile id number does not correspond to a tile b/c we don't have that id in the array you will end up of that tile being null so program would have a problem 
 	}
 
-	//RANDOM FIELD GENERATOTR //
-	private void loadField(String fieldString) {
+	//RANDOM FIELD GENERATOTR
+	public void loadField() {
 		String identities = "00000000000000001245"; //around 5% each are stone dirt and energy tiles
 		String randomString = "";
 		int length = width * height * 2; //this way you can change field size above
 
 		Random r = new Random();
 
-		char[] text = new char[length];{
+		char[] text = new char[length];
 
 			for(int i = 0; i < length; i++) {
 				if ((i+2)%2 == 1) {	
@@ -105,7 +95,7 @@ public class Field {
 			for(int i = 0; i < text.length; i++) {
 				randomString += text[i];
 			}
-		}
+		
 
 		String[] randomArray = randomString.split("\\s+");
 

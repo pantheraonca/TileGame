@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 import tilegame.Handler;
 import tilegame.entities.Entity;
-import tilegame.entities.EntityManager;
 import tilegame.graphics.Assets;
 import tilegame.skills.Fighter;
 import tilegame.skills.Skills;
@@ -63,7 +62,7 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 		State.CheckScore(); //checks if new high-score has to be set
 		State.setYourScore(0);//sets your score back to 0 
 		handler.getEntityManager().getPlayer().setEnergy(200); //resets energy of the player
-		//handler.getField().getEntityManager().setPlayer(this);
+		handler.getField().loadField(); //field again random when died 
 	}
 		
 	

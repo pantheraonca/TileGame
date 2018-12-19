@@ -15,10 +15,9 @@ public class GameState extends State {
 	//CONSTRUCTOR
 	public GameState(Handler handler) {
 		super(handler);
-		field = new Field(handler, null);
+		field = new Field(handler);
 		handler.setField(field);
 		shadow = new Shadow(handler, handler.getGame(), 20, 20); //MARIAN in shadow class noch size automatisch anpassen??
-
 	}
 	
 	@Override
