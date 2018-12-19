@@ -4,11 +4,13 @@ import tilegame.Handler;
 
 public class Stamina extends Skills {
 
-	private int skillLevel; //variable which will be incresed by increaseSkillmethod and will have influence of 
+	//VARIABLES
+	private int skillLevel; //variable which will be increased by increaseSkillmethod and will have influence of ???
 	private int skillPosition;
 	private Handler handler;
 	private int energyBonus;
 
+	//CONSTRUCTOR
 	public Stamina(Handler handler) {
 		super(handler);
 
@@ -18,7 +20,7 @@ public class Stamina extends Skills {
 	}
 
 	@Override 
-	public boolean testForSkill() {  // this method can come handy if more methods which influence skilllevel are written a skill 
+	public boolean testForSkill() {  // this method can come in handy if more methods which influence skill-level are written a skill 
 		if (handler.getSkillArray() [skillPosition] == true) {
 			return true;
 		}
@@ -32,7 +34,7 @@ public class Stamina extends Skills {
 
 		if (testForSkill()) {
 			skillLevel += 1;
-			if (skillLevel %15 == 0) {
+			if (skillLevel % 15 == 0) {
 				skillImpact();
 			}
 		}		

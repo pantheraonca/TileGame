@@ -10,8 +10,10 @@ import tilegame.userinterface.UIManager;
 
 public class MenuState extends State {
 
+	//VARIABLES
 	private UIManager uiManager;
 
+	//CONSTRUCTOR
 	public MenuState(Handler handler) { 
 		super(handler);
 		uiManager = new UIManager(handler);
@@ -48,6 +50,17 @@ public class MenuState extends State {
 			State.setHighScore(this.ReadHighScore());
 		}
 		g.drawString("Highscore: " + State.getHighScore(), 10, 15);
+		g.drawString("Start", 200, 280);
+		g.drawString("Settings", 400, 280);
+		g.drawString("Instructions", 70, 350);
+		g.drawString("use W A S D to move", 70, 400);
+		g.drawString("use the arrow keys to attack", 70, 415);
+		g.drawString("move over boosters to gain energy", 70, 430);
+		g.drawString("avoid mud, you will loose energy ", 70, 445);
+		g.drawString("don't move over lava", 70, 460);
+		g.drawString("the field is surrounded by lava", 70, 475);
+		g.drawString("to win fight the boss", 70, 490);
+	
 	}
 
 	//GETTERS SETTERS

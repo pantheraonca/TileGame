@@ -5,16 +5,15 @@ import tilegame.difficulty.Difficulty;
 
 public class DifficultyLevel {
 
+	//VARIABLES
 	private Handler handler;
 	private Difficulty difficulty;
 
-
+	//CONSTRUCTOR
 	public DifficultyLevel(Handler handler, Difficulty difficulty) {
 
 		this.handler = handler; 
 		this.difficulty = difficulty;
-
-
 	}
 
 	public void setDifficultyParameters(){
@@ -29,7 +28,7 @@ public class DifficultyLevel {
 			handler.setVisibilityLevel(1);
 			break;
 		default:
-			handler.setVisibilityLevel(3);
+			handler.setVisibilityLevel(3); //Marian what does this default do ??
 			break;
 		}
 	}
@@ -43,6 +42,4 @@ public class DifficultyLevel {
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
 	}
-
-
 }

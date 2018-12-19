@@ -7,12 +7,14 @@ import javax.swing.JFrame;
 
 public class Display {
 
+	//VARIABLES
 	private JFrame frame; //this is the window itself??
 	private Canvas canvas; //this is all the graphics
 
 	private String title;
 	private int width, height;//private because other classes do not have to access to them
 
+	//CONSTRUCTOR
 	public Display(String title, int width, int height) { //this is the constructor
 		this.title = title;
 		this.width = width; 
@@ -20,7 +22,7 @@ public class Display {
 
 		createDisplay(); //why this??
 	}
-
+	
 	private void createDisplay() {
 		frame = new JFrame(title);
 		frame.setSize(width, height);
@@ -39,6 +41,8 @@ public class Display {
 		frame.pack(); //so you see all the canvas 
 
 	}
+	
+	//GETTERS SETTERS
 
 	public Canvas getCanvas() { //getter method so we can access canvas from outside the class
 		return canvas;

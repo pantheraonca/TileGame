@@ -5,7 +5,6 @@ import tilegame.Handler;
 public abstract class Skills {
 
 	Skills(Handler handler){
-
 	}
 
 	public abstract boolean testForSkill();

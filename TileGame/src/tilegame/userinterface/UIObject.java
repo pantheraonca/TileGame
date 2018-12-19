@@ -6,12 +6,13 @@ import java.awt.event.MouseEvent;
 
 public abstract class UIObject {
 
+	//VARIABLES
 	protected float x, y;
 	protected int width, height;
 	protected Rectangle bounds;
 	protected boolean hovering = false;
 
-
+	//CONSTRUCTOR
 	public UIObject(float x, float y, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -39,6 +40,7 @@ public abstract class UIObject {
 	}
 
 	//GETTERS SETTERS
+	
 	public float getX() {
 		return x;
 	}

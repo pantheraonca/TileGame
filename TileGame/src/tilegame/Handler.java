@@ -12,9 +12,11 @@ import tilegame.userinterface.UIManager;
 
 public class Handler {
 
+	//VARIABLES
 	private Game game;
 	private Field field;
 
+	//CONSTRUCTOR
 	public Handler(Game game) { //allows us to just pass one object and access all the rest in here
 		this.game = game;
 	}
@@ -118,9 +120,11 @@ public class Handler {
 	public EntityManager getEntityManager() {
 		return getField().getEntityManager();
 	}
+	
 	public void setEntityManager(EntityManager entityManager) {
 		getField().setEntityManager(entityManager);
 	}
+	
 	public Player getPlayer() {
 		return getEntityManager().getPlayer();
 	}

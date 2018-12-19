@@ -8,25 +8,20 @@ import tilegame.userinterface.UIManager;
 
 public class MouseInputManager implements MouseListener, MouseMotionListener {
 
+	//VARIABLES
 	private boolean leftPressed, rightPressed;
 	private int mouseX, mouseY;
 	private UIManager uiManager;
 
 	public MouseInputManager() {
-
 	}
 
 	public void setUIManager(UIManager uiManager) {
 		this.uiManager = uiManager;
 	}
 
-	// Implemented methods
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-
-	}
-
+	// IMPLEMENTED METHODS //passt die überschrift ?
+	
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mouseX = e.getX();
@@ -34,12 +29,6 @@ public class MouseInputManager implements MouseListener, MouseMotionListener {
 
 		if(uiManager != null) //if the uiManager exists
 			uiManager.onMouseMove(e);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-
-
 	}
 
 	@Override
@@ -60,15 +49,21 @@ public class MouseInputManager implements MouseListener, MouseMotionListener {
 		if(uiManager != null) //if the uiManager exists
 			uiManager.onMouseRelease(e);
 	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-
 	}
 
 	//GETTERS SETTERS
@@ -88,7 +83,4 @@ public class MouseInputManager implements MouseListener, MouseMotionListener {
 	public int getMouseY() {
 		return mouseY;
 	}
-
-
-
 }

@@ -4,19 +4,18 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import tilegame.Handler;
 
-
-
 public abstract class Entity { //abstract why
 
+	//VARIABLES
 	protected Handler handler;
 	protected int x, y; //protected is like private but classes that extend this class also have access; float is so the caracter moves smoothly
 	protected int width, height;
 	protected Rectangle bounds;
 	protected int energy;
 	protected boolean active = true; //whether entity is there or not
+	public static int DEFAULT_ENERGY = 10;
 
-	public static int DEFAULT_ENERGY = 4;
-
+	//CONSTRUCTOR
 	public Entity(Handler handler, int x, int y, int width, int height) {
 		this.handler = handler;
 		this.x = x;
@@ -38,10 +37,11 @@ public abstract class Entity { //abstract why
 		energy -= amt;
 		if(energy <= 0) {
 			active = false;
-			die(); //bekommen wir punkte wenn wir sterben?
+			die();
 		}
 	}
-
+	
+	//COLLISION WITH ENTITY
 	public boolean checkEntityCollisions(int xOffset, int yOffset) {
 		for(Entity e : handler.getField().getEntityManager().getEntities()) {
 			if(e.equals(this))//so it does not check for collisions with itself
@@ -50,7 +50,7 @@ public abstract class Entity { //abstract why
 				return true;
 		}
 		return false;
-	} //kömmer das was durnter und drüber is wegmachen???
+	} //Marian kömmer wegmachen bounds.x diese sachen???
 
 	public Rectangle getCollisionBounds(int xOffset, int yOffset) {
 		return new Rectangle(x + bounds.x + xOffset, y + bounds.y + yOffset, bounds.width, bounds.height);
@@ -90,7 +90,6 @@ public abstract class Entity { //abstract why
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
 
 	public int getEnergy() {
 		return energy;

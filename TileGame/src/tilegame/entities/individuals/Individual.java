@@ -6,31 +6,31 @@ import tilegame.tiles.Tile;
 
 public abstract class Individual extends Entity {
 
-
-	public static final int DEFAULT_SPEED = 32;
+	//VARIABLES
+	public static final int DEFAULT_SPEED = 32; //ensures tile by tile movement
 	public static final int DEFAULT_INDIVIDUAL_WIDTH = 32;
 	public static final int DEFAULT_INDIVIDUAL_HEIGHT = 32;
 
 	protected int speed;
 	protected int xMove, yMove;
 
+	//CONSTRUCTOR
 	public Individual(Handler handler, int x, int y, int width, int height) {
-		super(handler, x, y, width, height); //leads to entity classes contructor
+		super(handler, x, y, width, height); //leads to entity classes constructor
 
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
 	}
 	
-	//COLLISION WITH SOLID TILES
-	
-	public void move() {
+	public void move() { //this is important otherwise you move through entities eventually why i dont know
 		if(!checkEntityCollisions(xMove, 0))
-			moveX(); //this way you can still move up and down and are not stuck in the y axis when collision in x direction happens
+			moveX();
 		if(!checkEntityCollisions(0, yMove))
 			moveY();
 	}
-
+	
+	//COLLISION WITH TILES
 	public void moveX() {
 		if(xMove > 0) {//RIGHT
 
@@ -41,13 +41,15 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(tx, y / Tile.TILE_HEIGHT)) {
 				x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH;
-				if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
+				if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
 					handler.getPlayer().hurt(2);
 				}
-				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
+				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+					
+					//handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).setId(5); //shit b/c sets all to magmaTile
 				}
-				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
+				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
 				}
 			}
@@ -65,20 +67,20 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(tx, y / Tile.TILE_HEIGHT)) {
 				x = tx * Tile.TILE_WIDTH - Tile.TILE_WIDTH;
-				if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
+				if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
 					handler.getField().getEntityManager().getPlayer().hurt(2);
 				}
-				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
+				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+					
 				}
-				else if(handler.getField().getTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
+				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
 				}
 			}
 			
 			else {
 				x += xMove;
-
 			}
 		}
 	}
@@ -94,13 +96,14 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(x / Tile.TILE_WIDTH, ty)) {
 				y = ty * Tile.TILE_HEIGHT - Tile.TILE_HEIGHT;
-				if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 2) {
+				if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 2) {
 					handler.getField().getEntityManager().getPlayer().hurt(2);
 				}
-				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
+				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+					
 				}
-				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
+				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
 				}
 			}
@@ -118,13 +121,14 @@ public abstract class Individual extends Entity {
 			
 			else if(collisionSpecialTile(x / Tile.TILE_WIDTH, ty)) {
 				y = ty * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT;
-				if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 2) {
+				if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 2) {
 					handler.getField().getEntityManager().getPlayer().hurt(2);
 				}
-				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
+				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
+					
 				}
-				else if(handler.getField().getTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
+				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
 				}
 			}
@@ -136,11 +140,11 @@ public abstract class Individual extends Entity {
 	}
 
 	protected boolean collisionWithTile(int x, int y) {
-		return handler.getField().getTile(x, y).isSolid(); //returns true if tile is solid
+		return handler.getField().obtainTile(x, y).isSolid(); //returns true if tile is solid
 	}
 	
 	protected boolean collisionSpecialTile(int x, int y) {
-		return handler.getField().getTile(x, y).isSpecial(); //returns true if tile is special
+		return handler.getField().obtainTile(x, y).isSpecial(); //returns true if tile is special
 	}
 	
 
@@ -177,5 +181,4 @@ public abstract class Individual extends Entity {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
-
 }

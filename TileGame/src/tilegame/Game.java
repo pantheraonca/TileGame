@@ -17,7 +17,8 @@ import tilegame.states.SettingsState;
 import tilegame.states.State;
 
 public class Game implements Runnable { //imp runnable so it can run on a thread
-
+	
+	//VARIABLES
 	private Display display;
 	private int width, height; //so this class also has access to the width and height easily
 	public String title;
@@ -35,7 +36,7 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	public SettingsState settingsState;
 
 	//Difficulty
-	private DifficultyLevel difficultyLevel;//change to difficultylevel
+	private DifficultyLevel difficultyLevel;
 	private Difficulty difficulty;
 
 	//Input
@@ -46,9 +47,9 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	private Handler handler;
 
 	//PlayerCamera
-
 	private PlayerCamera playerCamera;
 
+	//CONSTRUCTOR
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -56,7 +57,6 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		keyInputManager = new KeyInputManager();
 		mouseInputManager = new MouseInputManager();
 	}
-
 
 	private void init() { //initializes graphics
 		display = new Display(title, width, height);
@@ -72,15 +72,15 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 
 		handler = new Handler(this);
 		
-		gameState = new GameState(handler); //what object do we pass it? we are in the game class so we use this 
+		gameState = new GameState(handler);
 		settingsState = new SettingsState(handler);
 		menuState = new MenuState(handler);
-		State.setState(menuState); //put back to menu state to start at menu state	
+		State.setState(menuState); //sets the state you start the game with
 
 		//DIFFICULTY LEVEL
 		difficulty = Difficulty.EASY;
 		difficultyLevel = new DifficultyLevel(handler, difficulty);
-		//this does nothing
+		//Marian this does nothing???
 	}
 
 	private void update() { //updates variables positions etc.
@@ -92,26 +92,27 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 
 	private void render() { //renders changes to the GUI
 		bs = display.getCanvas().getBufferStrategy(); //how many buffers the canvas uses
+		
 		if(bs == null) {
 			display.getCanvas().createBufferStrategy(3); //use 3 buffers
 			return;
-
 		}
-		g = bs.getDrawGraphics(); //creating the paintbrush whut??
+		
+		g = bs.getDrawGraphics(); //creating the paint brush what does that do??
 		//clear screen put width and height so it clears everything
 		g.clearRect(0, 0, width, height);
-		//DRAW HERE
 
+		//DRAW HERE
 		if(State.getState() != null)
 			State.getState().render(g);
 
 		//END DRAWING
-		bs.show(); //what does this do
+		bs.show(); //what does this do??
 		g.dispose(); //graphic object needs this
 	}
 
 	public void run() { //needed for thread usage
-
+		
 		init();
 
 		int fps = 60;
@@ -136,14 +137,14 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 				delta--;
 			}
 
-			if(timer >= 1000000000) { //how many ticks have occured in one second
-				System.out.println("Ticks and Frames:" + ticks);
+			if(timer >= 1000000000) { //how many ticks have occurred in one second
+				System.out.println("Ticks and Frames:" + ticks); //should we add more print out stuff??
 				ticks = 0;
 				timer = 0;
 			}
 		}
 
-		stop(); //when running equals false while loop will exit and stop method is called
+		stop(); //when running equals false, while-loop will exit and stop method is called
 	}
 
 
@@ -185,31 +186,25 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		return height;
 	}
 
-
 	public MenuState getMenuState() {
 		return menuState;
 	}
-
 
 	public void setMenuState(MenuState menuState) {
 		this.menuState = menuState;
 	}
 
-
 	public PlayerCamera getPlayerCamera() {
 		return playerCamera;
 	}
-
 
 	public void setPlayerCamera(PlayerCamera playerCamera) {
 		this.playerCamera = playerCamera;
 	}
 
-
 	public DifficultyLevel getDifficultyState() {
 		return difficultyLevel;
 	}
-
 
 	public void setDifficultyState(DifficultyLevel difficultyState) {
 		this.difficultyLevel = difficultyState;

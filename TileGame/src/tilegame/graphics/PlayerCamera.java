@@ -3,7 +3,7 @@ package tilegame.graphics;
 import tilegame.Handler;
 import tilegame.entities.Entity;
 
-public class PlayerCamera{
+public class PlayerCamera {
 
 	private float xOffset;
 	private float yOffset;
@@ -14,11 +14,9 @@ public class PlayerCamera{
 		this.handler= handler;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
-
 	}
 
 	public void centerOn(Entity player) {
-
 
 		xOffset = player.getX() + (float) (0.5 * player.getWidth());
 		yOffset = player.getY() + (float) (0.5 * player.getHeight());
@@ -57,6 +55,3 @@ public class PlayerCamera{
 		this.handler = handler;
 	}
 }
-
-
-

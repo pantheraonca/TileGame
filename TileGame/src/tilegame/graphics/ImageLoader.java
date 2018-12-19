@@ -7,14 +7,14 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader {
 
+	//CONSTRUCTOR
 	public static BufferedImage loadImage(String path) {
 		try {
 			return ImageIO.read(ImageLoader.class.getResource(path));
 		} catch (IOException e) {//try and catch statement in case errors happen
 			e.printStackTrace();
-			System.exit(1); //if we dont load image into game we don't want to run our game
+			System.exit(1); //if we don't load image into game we don't want to run our game
 		}
 		return null; //gets rid of errors
 	}
-
 }

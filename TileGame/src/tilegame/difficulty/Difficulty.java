@@ -9,10 +9,11 @@ public enum Difficulty {
 	private int difficulty;
 
 	private Difficulty (int difficulty) {
-
 		this.difficulty = difficulty;
 	}
 
+	//GETTERS SETTERS
+	
 	public int getDifficulty () {
 		return this.difficulty;
 	}

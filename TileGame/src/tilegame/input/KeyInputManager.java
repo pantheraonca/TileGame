@@ -6,8 +6,9 @@ import java.awt.event.KeyListener;
 
 public class KeyInputManager implements KeyListener{
 
+	//VARIABLES
 	private boolean[] keys;
-	public boolean up, down, left, right; //isMoving;
+	public boolean up, down, left, right;
 	public boolean aUp, aDown, aLeft, aRight;
 
 	public KeyInputManager() {
@@ -25,9 +26,9 @@ public class KeyInputManager implements KeyListener{
 		aLeft = keys[KeyEvent.VK_LEFT];
 		aRight = keys[KeyEvent.VK_RIGHT];
 	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
-
 	}
 
 	@Override
@@ -38,6 +39,5 @@ public class KeyInputManager implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()] = false;
-
 	}
 }

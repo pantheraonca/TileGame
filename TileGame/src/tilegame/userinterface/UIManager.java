@@ -8,10 +8,11 @@ import tilegame.Handler;
 
 public class UIManager {
 
+	//VARIABLES
 	private Handler handler;
 	private ArrayList<UIObject> objects;
 
-
+	//CONSTRUCTOR
 	public UIManager(Handler handler) {
 		this.handler = handler;
 		objects = new ArrayList<UIObject>();
@@ -45,6 +46,8 @@ public class UIManager {
 		objects.remove(o);
 	}
 
+	//GETTERS SETTERS
+	
 	public Handler getHandler() {
 		return handler;
 	}

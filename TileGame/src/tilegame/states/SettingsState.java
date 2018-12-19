@@ -12,6 +12,7 @@ import tilegame.graphics.Assets;
 
 public class SettingsState extends State{
 
+	//VARIABLES
 	private UIButton imageButtonEasy, imageButtonMedium, imageButtonHard, imageButtonBack, imageButtonFighter, imageButtonStamina;
 	private BufferedImage easy, medium, hard, back, fighter, stamina;
 	private UIManager settingsUiManager;
@@ -19,7 +20,7 @@ public class SettingsState extends State{
 	private final int maxSkills = 1;
 	private int numberOfSkills;
 
-
+	//CONSTRUCTOR
 	public SettingsState(Handler handler) { 
 		super(handler);
 
@@ -34,12 +35,9 @@ public class SettingsState extends State{
 		stamina = Assets.stamina;
 
 		skillArray = new boolean [3];
-		skillArray [0] = true;   //default skill is fighter at position 1
+		skillArray [0] = true;   //default skill is fighter at position 1 change
 		skillArray [1] = false;
 		skillArray [2] = false;
-
-
-
 
 		imageButtonEasy = 	new UIButton (100, 100, 64, 64, easy, new ClickListener() {
 
@@ -71,7 +69,7 @@ public class SettingsState extends State{
 			}
 		});
 
-		imageButtonBack = new UIButton (300, 500, 64, 64, back, new ClickListener(){
+		imageButtonBack = new UIButton (430, 170, 64, 64, back, new ClickListener(){
 
 			@Override
 			public void onClick () { 
@@ -81,59 +79,67 @@ public class SettingsState extends State{
 			}
 		});
 
-		imageButtonFighter = new UIButton (100, 200, 64, 64, fighter, new ClickListener(){
+		for (int i=0; i< skillArray.length; i++ ) {     // this for loop counts the current number of skills selected 
+			if (skillArray[i] == true) {				// it iterates through the skillArray and adds 1 to number ofSkills for every true element
+				numberOfSkills += 1;
+			}
+		}
 
+		imageButtonFighter = new UIButton (100, 260, 64, 64, fighter, new ClickListener(){
+			
 			@Override
 			public void onClick () { 
+				
+				if (skillArray[0] == false) {   		// this if statement checks if the position of Fighter in skillArray is set to false
+					numberOfSkills += 1;				//if it was it increases the amount of selected skills by 1 because it will next set the skill to true	
+				}
+				skillArray[0] = true;					// here it sets skillArray at position of Skill to true and then prints that it has done so
+				System.out.println("Skill has been set to \"Fighter\"");	
+				
+				if (numberOfSkills > maxSkills) {					//If the number of skills selected is too high then for loop will be carried out to unset akills
+					
+					for (int i=0; i < skillArray.length; i++) {		//This for loop iterates through skillArray and sets first position in array which is not the current skills position and true to false. Then it breaks the for loop because numberOfSkills is now equal to maxSkills. 	
+						
+						if (i != 0 && numberOfSkills > maxSkills && skillArray[i]== true) {
+						
+							skillArray[i] =false;
+							numberOfSkills -= 1;
+							break;
+					
+						}
 
-
-				numberOfSkills = 0;
-
-				for (int i=0; i< skillArray.length; i++ ) {
-					if (skillArray[i] == true) {
-						numberOfSkills += 1;
 					}
-				}
-
-				if (numberOfSkills < maxSkills || skillArray[0] == false) {
-
-					skillArray[0] = true;
-					System.out.println("Skill has been set to \"Fighter\"");
-
-				}
-				else {
-					skillArray[0] = false;
-					System.out.println("The Skill \"Fighter\" has been deselected");
 				}
 			}
 		});
 
-		imageButtonStamina = new UIButton (200, 200, 64, 64, stamina, new ClickListener(){
+		imageButtonStamina = new UIButton (200, 260, 64, 64, stamina, new ClickListener(){
 
 			@Override
 			public void onClick () { 
 
-				numberOfSkills = 0;
+				if (skillArray[1] == false) {   		// this if statement checks if the position of Fighter in skillArray is set to false
+					numberOfSkills += 1;				//if it was it increases the amount of selected skills by 1 because it will next set the skill to true	
+				}
+				skillArray[1] = true;					// here it sets skillArray at position of Skill to true and then prints that it has done so
+				System.out.println("Skill has been set to \"Stamina\"");	
+				
+				if (numberOfSkills > maxSkills) {					//If the number of skills selected is too high then for loop will be carried out to unset akills
+					
+					for (int i=0; i < skillArray.length; i++) {		//This for loop iterates through skillArray and sets first position in array which is not the current skills position and true to false. Then it breaks the for loop because numberOfSkills is now equal to maxSkills. 	
+						
+						if (i != 1 && numberOfSkills > maxSkills && skillArray[i]== true) {
+						
+							skillArray[i] =false;
+							numberOfSkills -= 1;
+							break;
+					
+						}
 
-				for (int i=0; i< skillArray.length; i++ ) {
-					if (skillArray[i] == true) {
-						numberOfSkills += 1;
 					}
-				}
-
-				if (numberOfSkills < maxSkills || skillArray[0] == false) {
-
-					skillArray[1] = true;
-					System.out.println("Skill has been set to \"Stamina\"");
-
-				}
-				else {
-					skillArray[1] = false;
-					System.out.println("The Skill \"Stamina\" has been deselected"); //muss noch perfektioniert werden weil jetzte wenn fighter selected ist kann stamina nicht selected werden
 				}
 			}
 		});
-
 
 		settingsUiManager.addObject(imageButtonEasy);
 		settingsUiManager.addObject(imageButtonMedium);
@@ -141,19 +147,27 @@ public class SettingsState extends State{
 		settingsUiManager.addObject(imageButtonBack);
 		settingsUiManager.addObject(imageButtonFighter);
 		settingsUiManager.addObject(imageButtonStamina);
-
 	}
 
 	@Override
 	public void update() {
 		settingsUiManager.update();
-
 	}
 
 	@Override
 	public void render(Graphics g) {
 		settingsUiManager.render(g);
+		g.drawString("Easy", 100, 180);
+		g.drawString("Medium", 200, 180);
+		g.drawString("Hard", 300, 180);
+		g.drawString("Fighter", 100, 340);
+		g.drawString("Stamina", 200, 340);
+		g.drawString("Back to Menu", 430, 250);
+		g.drawString("Choose Skill", 150, 240);
+		g.drawString("Choose Difficulty", 200, 80);
 	}
+	
+	//GETTERS SETTERS
 
 	public UIManager getSettingsUiManager() {
 		return settingsUiManager;

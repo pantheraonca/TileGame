@@ -11,11 +11,12 @@ import tilegame.tiles.Tile;
 
 
 public class Enemy extends StaticEntity {
-
-
+	
+	//VARIABLES
 	private Entity enemy;
 	private int randomEnergy;
 	
+	//CONSTRUCTOR
 	public Enemy(Handler handler, int x, int y) {
 		super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
 
@@ -24,25 +25,20 @@ public class Enemy extends StaticEntity {
 		
 		enemy = this;
 		enemy.setEnergy(randomEnergy);
-		
 	}
 
 	@Override
 	public void update() {
-
 	}	
 
 	@Override
 	public void die() {
 		State.setYourScore(x = State.getYourScore() + 20);
-		handler.getFighter().increaseSkill();  // for each enemy that dies a fighter increases its skillevel
+		handler.getFighter().increaseSkill();  // for each enemy that dies a fighter increases its skill-level
 	}
-
 
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Assets.enemy, (int) (x), (int) (y), width, height, null);
-
 	}
-	
 }

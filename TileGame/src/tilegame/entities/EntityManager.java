@@ -7,19 +7,19 @@ import tilegame.entities.individuals.Player;
 
 public class EntityManager {
 
+	//VARIABLES
 	private Handler handler;
 	private Player player;
 	private ArrayList<Entity> entities; //arraylist has no size could also be an array
 
-
+	//CONSTRUCTOR
 	public EntityManager(Handler handler, Player player) {
 		this.handler = handler;
 		this.player = player;
 		entities = new ArrayList<Entity>();
-		addEntity(player); // should tree be here and not in field ??!!
+		addEntity(player); //what does this do? why not enough to put the player in field? because player object is needed in entity manager???
 	}
 	
-
 	public void update() {	
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -35,7 +35,6 @@ public class EntityManager {
 			e.render(g);
 		}
 	}
-
 
 	public void addEntity(Entity e) {
 		entities.add(e);
@@ -67,5 +66,4 @@ public class EntityManager {
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
 	}
-
 }

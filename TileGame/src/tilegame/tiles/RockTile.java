@@ -8,6 +8,7 @@ public class RockTile extends Tile {
 		super(Assets.rock, id);
 
 	}
+	
 	@Override //just shows that this method overrides another one
 	public boolean isSolid() {
 		return true;

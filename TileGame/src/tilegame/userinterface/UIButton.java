@@ -5,10 +5,11 @@ import java.awt.image.BufferedImage;
 
 public class UIButton extends UIObject {
 
+	//VARIABLES
 	private BufferedImage image;
 	private ClickListener clicker;
 
-
+	//CONSTRUCTOR
 	public UIButton(float x, float y, int width, int height, BufferedImage image, ClickListener clicker) {
 		super(x, y, width, height);
 		this.image = image;
@@ -17,19 +18,15 @@ public class UIButton extends UIObject {
 
 	@Override
 	public void update() {
-
 	}
 
 	@Override
 	public void render(Graphics g) {
-
 		g.drawImage(image, (int) x, (int) y, width, height, null);
 	}
 
 	@Override
 	public void onClick() {
 		clicker.onClick();
-
 	}
-
 }

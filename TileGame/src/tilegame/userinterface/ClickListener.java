@@ -3,5 +3,4 @@ package tilegame.userinterface;//interfaces have no methods just the outline of 
 public interface ClickListener {
 
 	public void onClick(); 
-
 }
