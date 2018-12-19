@@ -168,4 +168,20 @@ public class Field {
 	public void setHandler(Handler handler) { //can this be removed??
 		this.handler = handler;
 	}
+
+	public int getEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+
+	public int[][] getFieldTiles() {
+		return fieldTiles;
+	}
+
+	public void setFieldTiles(int[][] fieldTiles) {
+		this.fieldTiles = fieldTiles;
+	}
 }

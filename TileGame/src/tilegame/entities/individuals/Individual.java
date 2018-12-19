@@ -13,6 +13,7 @@ public abstract class Individual extends Entity {
 
 	protected int speed;
 	protected int xMove, yMove;
+	private int[][] fieldTiles;
 
 	//CONSTRUCTOR
 	public Individual(Handler handler, int x, int y, int width, int height) {
@@ -46,8 +47,9 @@ public abstract class Individual extends Entity {
 				}
 				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
-					
-					//handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).setId(5); //shit b/c sets all to magmaTile
+					fieldTiles = handler.getField().getFieldTiles();
+					fieldTiles [tx][y / Tile.TILE_HEIGHT] = 5;
+					handler.getField().setFieldTiles(fieldTiles);
 				}
 				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
@@ -72,7 +74,9 @@ public abstract class Individual extends Entity {
 				}
 				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
-					
+					fieldTiles = handler.getField().getFieldTiles();
+					fieldTiles [tx][y / Tile.TILE_HEIGHT] = 5;
+					handler.getField().setFieldTiles(fieldTiles);
 				}
 				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
@@ -101,7 +105,9 @@ public abstract class Individual extends Entity {
 				}
 				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
-					
+					fieldTiles = handler.getField().getFieldTiles();
+					fieldTiles [x / Tile.TILE_WIDTH][ty] = 5;
+					handler.getField().setFieldTiles(fieldTiles);
 				}
 				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);
@@ -126,7 +132,9 @@ public abstract class Individual extends Entity {
 				}
 				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 4) {
 					handler.getField().getEntityManager().getPlayer().setEnergy((handler.getField().getEntityManager().getPlayer().getEnergy()) + 2);     
-					
+					fieldTiles = handler.getField().getFieldTiles();
+					fieldTiles [x / Tile.TILE_WIDTH][ty] = 5;
+					handler.getField().setFieldTiles(fieldTiles);
 				}
 				else if(handler.getField().obtainTile(x / Tile.TILE_WIDTH, ty).getId() == 5) {
 					handler.getField().getEntityManager().getPlayer().hurt((handler.getField().getEntityManager().getPlayer().getEnergy()) + 1);

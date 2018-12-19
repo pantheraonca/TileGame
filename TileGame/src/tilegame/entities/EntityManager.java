@@ -25,7 +25,11 @@ public class EntityManager {
 			Entity e = entities.get(i);
 			e.update();
 			if(!e.isActive())
-				entities.remove(e);
+				if(e.equals(player)) //this way player doesnt get removed when he dies 
+					continue;
+				else { 
+					entities.remove(e);
+				}
 		}
 	}
 
