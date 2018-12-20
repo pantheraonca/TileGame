@@ -19,16 +19,16 @@ public class DifficultyLevel {
 	public void setDifficultyParameters(){
 		switch (difficulty) {
 		case EASY:
-			handler.setVisibilityLevel(3);
+			handler.setVisibilityLevel(5);
 			break;
 		case MEDIUM:
-			handler.setVisibilityLevel(2);
+			handler.setVisibilityLevel(4);
 			break;
 		case HARD:
-			handler.setVisibilityLevel(1);
+			handler.setVisibilityLevel(2);
 			break;
 		default:
-			handler.setVisibilityLevel(3); //Marian what does this default do ??
+			handler.setVisibilityLevel(5); //Marian what does this default do ??
 			break;
 		}
 	}

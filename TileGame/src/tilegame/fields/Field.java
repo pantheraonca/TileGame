@@ -62,6 +62,7 @@ public class Field {
 		
 		//ENTITIES
 		entityManager.render(g);
+		handler.getPlayer().render(g);
 	}
 
 	public Tile obtainTile(int x, int y) {

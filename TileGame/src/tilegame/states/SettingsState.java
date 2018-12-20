@@ -2,6 +2,9 @@ package tilegame.states;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JOptionPane;
+
 import tilegame.Handler;
 import tilegame.difficulty.Difficulty;
 import tilegame.userinterface.ClickListener;
@@ -43,9 +46,10 @@ public class SettingsState extends State{
 
 			@Override
 			public void onClick () { 
-
+				JOptionPane.showMessageDialog(null, "Difficulty has been set to Easy", null, 1);
 				handler.getDifficultyState().setDifficulty(Difficulty.EASY);
 				handler.getDifficultyState().setDifficultyParameters();
+				
 			}
 		});
 
@@ -53,7 +57,7 @@ public class SettingsState extends State{
 
 			@Override
 			public void onClick () { 
-
+				JOptionPane.showMessageDialog(null, "Difficulty has been set to Medium", null, 1);
 				handler.getDifficultyState().setDifficulty(Difficulty.MEDIUM);
 				handler.getDifficultyState().setDifficultyParameters();
 			}
@@ -63,7 +67,7 @@ public class SettingsState extends State{
 
 			@Override
 			public void onClick () { 
-
+				JOptionPane.showMessageDialog(null, "Difficulty has been set to Hard", null, 1);
 				handler.getDifficultyState().setDifficulty(Difficulty.HARD);
 				handler.getDifficultyState().setDifficultyParameters();
 			}
@@ -93,9 +97,8 @@ public class SettingsState extends State{
 				if (skillArray[0] == false) {   		// this if statement checks if the position of Fighter in skillArray is set to false
 					numberOfSkills += 1;				//if it was it increases the amount of selected skills by 1 because it will next set the skill to true	
 				}
-				skillArray[0] = true;					// here it sets skillArray at position of Skill to true and then prints that it has done so
-				System.out.println("Skill has been set to \"Fighter\"");	
-				
+				skillArray[0] = true;					// here it sets skillArray at position of Skill to true and then prints that it has done so	
+				JOptionPane.showMessageDialog(null, "Skill has been set to Fighter", null, 1);
 				if (numberOfSkills > maxSkills) {					//If the number of skills selected is too high then for loop will be carried out to unset akills
 					
 					for (int i=0; i < skillArray.length; i++) {		//This for loop iterates through skillArray and sets first position in array which is not the current skills position and true to false. Then it breaks the for loop because numberOfSkills is now equal to maxSkills. 	
@@ -122,7 +125,7 @@ public class SettingsState extends State{
 					numberOfSkills += 1;				//if it was it increases the amount of selected skills by 1 because it will next set the skill to true	
 				}
 				skillArray[1] = true;					// here it sets skillArray at position of Skill to true and then prints that it has done so
-				System.out.println("Skill has been set to \"Stamina\"");	
+				JOptionPane.showMessageDialog(null, "Skill has been set to Stamina", null, 1);;	
 				
 				if (numberOfSkills > maxSkills) {					//If the number of skills selected is too high then for loop will be carried out to unset akills
 					

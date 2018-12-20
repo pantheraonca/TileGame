@@ -16,7 +16,7 @@ public class Shadow {
 	private Handler handler;
 	private int dontRenderX;
 	private int dontRenderY;
-	private int visibilityLevel = 3;
+	private int visibilityLevel = 5;
 
 	//CONSTRUCTOR
 	public Shadow (Handler handler, Game game, int width, int height) {
