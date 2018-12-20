@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JOptionPane;
 
+import tilegame.Game;
 import tilegame.Handler;
 import tilegame.entities.Entity;
 import tilegame.graphics.Assets;
@@ -37,7 +38,7 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 	@Override
 	public void update() {
 		//movement
-		getInput();
+		checkMovement();
 		move();
 
 		//attack
@@ -47,7 +48,7 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 		handler.getPlayerCamera().centerOn(this);
 	}
 	
-	@Override //muss hier unten sein sonst kann man durch kürbisse laufen
+	@Override
 	public void render(Graphics g) {
 		g.drawImage(Assets.player,  x, y, width, height, null);
 		//width and height re-scale the player image
@@ -56,13 +57,12 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 	
 	@Override
 	public void die() {
-		JOptionPane.showMessageDialog(null, "You died!", null, 1); //pop up message when you die
-		handler.getMouseInputManager().setUIManager(handler.getUIManager()); //setting this back to the UiManager is important so the buttons can be pressed again 
-		State.setState(handler.getGame().menuState); //goes back to menu state
+		State.setYourScore(State.getYourScore() + (handler.getPlayer().getEnergy()) / 2); // adds half the remaining energy to your score
+		JOptionPane.showMessageDialog(null, "You died! Your Score is " + State.getYourScore(), null, 1);
 		State.CheckScore(); //checks if new high-score has to be set
-		State.setYourScore(0);//sets your score back to 0 
-		handler.getEntityManager().getPlayer().setEnergy(200); //resets energy of the player
-		handler.getField().loadField(); //field again random when died 
+		handler.getGame().getDisplay().getFrame().dispose();
+		handler.setGame(new Game("BE SQUARE OR DON'T BE THERE", 640, 640));
+		handler.getGame().start();
 	}
 		
 	
@@ -113,10 +113,8 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 		}
 	}
 	
-
-
 	//MOVE TIMER
-	private void getInput() {
+	private void checkMovement() { //checkMovement
 		xMove = 0;
 		yMove = 0;
 
@@ -136,8 +134,8 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 		else {
 			return; //if none of those are pressed then just return from this method without doing anything
 		}
-
-		handler.getField().getEntityManager().getPlayer().hurt(1); //moving once costs the player 1 energy unit
+		
+		handler.getPlayer().hurt(1); //moving once costs the player 1 energy unit
 		stamina.increaseSkill(); // every input stamina skill gets increased by 1
 		moveTimer = 0; //player has moved now and should wait another 800 milliseconds
 	}

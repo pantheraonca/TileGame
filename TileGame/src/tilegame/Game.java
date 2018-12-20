@@ -174,6 +174,10 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 		return keyInputManager;
 	}
 
+	public void setKeyInputManager(KeyInputManager keyInputManager) {
+		this.keyInputManager = keyInputManager;
+	}
+
 	public MouseInputManager getMouseInputManager() {
 		return mouseInputManager;
 	}
@@ -208,5 +212,13 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 
 	public void setDifficultyState(DifficultyLevel difficultyState) {
 		this.difficultyLevel = difficultyState;
+	}
+
+	public Display getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(Display display) {
+		this.display = display;
 	}
 }

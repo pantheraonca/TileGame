@@ -31,7 +31,7 @@ public class EntityManager {
 					entities.remove(e);
 				}
 		}
-	}
+	} //int i = entities.size() - 1; i >= 0; i--
 
 	public void render(Graphics g) {
 		for(int i = 0; i < entities.size(); i++) {

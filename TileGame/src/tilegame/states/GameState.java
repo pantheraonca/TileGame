@@ -12,6 +12,7 @@ public class GameState extends State {
 	private Field field;
 	private Shadow shadow;
 
+
 	//CONSTRUCTOR
 	public GameState(Handler handler) {
 		super(handler);

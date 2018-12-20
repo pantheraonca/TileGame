@@ -41,12 +41,13 @@ public abstract class Individual extends Entity {
 			}
 			
 			else if(collisionSpecialTile(tx, y / Tile.TILE_HEIGHT)) {
-				x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH;
+					x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH;
+				
 				if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 2) {
 					handler.getPlayer().hurt(2);
 				}
 				else if(handler.getField().obtainTile(tx, y / Tile.TILE_HEIGHT).getId() == 4) {
-					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 2);     
+					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 2); 
 					updatedFieldTiles = handler.getField().getFieldTiles();
 					updatedFieldTiles [tx][y / Tile.TILE_HEIGHT] = 5;
 					handler.getField().setFieldTiles(updatedFieldTiles);

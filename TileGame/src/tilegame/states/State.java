@@ -27,14 +27,16 @@ public abstract class State { //what is an abstract class
 
 	//CLASS
 	//VARIABLES
+	protected Handler handler;
 	private static String highScore = "";
 	private static int yourScore = 0; //things need to be global if you want to access them from anywhere
-	protected Handler handler;
+	
 
 	//CONSTRUCTOR
 	public State(Handler handler) {
 		this.handler = handler;
 	}
+	
 
 	public abstract void update();
 
