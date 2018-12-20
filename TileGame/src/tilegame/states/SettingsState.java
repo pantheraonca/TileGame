@@ -138,7 +138,6 @@ public class SettingsState extends State{
 							break;
 					
 						}
-
 					}
 				}
 			}
