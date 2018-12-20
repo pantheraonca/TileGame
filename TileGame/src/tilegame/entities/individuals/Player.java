@@ -60,9 +60,10 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 		State.setYourScore(State.getYourScore() + (handler.getPlayer().getEnergy()) / 2); // adds half the remaining energy to your score
 		JOptionPane.showMessageDialog(null, "You died! Your Score is " + State.getYourScore(), null, 1);
 		State.CheckScore(); //checks if new high-score has to be set
+		State.setYourScore(0);
 		handler.getGame().getDisplay().getFrame().dispose();
 		handler.setGame(new Game("BE SQUARE OR DON'T BE THERE", 640, 640));
-		handler.getGame().start();
+		handler.getGame().run();
 	}
 		
 	

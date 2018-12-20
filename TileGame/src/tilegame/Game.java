@@ -114,6 +114,8 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 	public void run() { //needed for thread usage
 		
 		init();
+		
+		running =true;
 
 		int fps = 60;
 		double timePerTick = 1000000000 / fps;
@@ -143,29 +145,12 @@ public class Game implements Runnable { //imp runnable so it can run on a thread
 				timer = 0;
 			}
 		}
-
-		stop(); //when running equals false, while-loop will exit and stop method is called
 	}
 
+		
 
-	public synchronized void start() { //initializes thread and "this" so it runs this class
-		if(running)
-			return; //this stops java from running the lines bellow so that if the game is running already and this method gets called somehow it does not give a mess
-		running = true;
-		thread = new Thread(this);
-		thread.start(); //will call run method
-	}
 
-	public synchronized void stop() { //closes down thread properly
-		if(!running)
-			return; //same safety as in the start method
-		running = false;
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 
 	//GETTERS SETTERS
