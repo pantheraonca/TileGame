@@ -9,7 +9,7 @@ public class Assets {
 	public static BufferedImage player, dirt, grass, rock, enemy, shadow, energy, boss, easy, medium, hard, back, settings, magma, fighter, stamina;
 	public static BufferedImage[] btn_start;
 
-	public static void init() {
+	public static void crop() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/terrain.png"));
 
 		player = sheet.crop(width * 7, height * 7, width, height);

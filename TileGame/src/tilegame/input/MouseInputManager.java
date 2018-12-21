@@ -66,7 +66,7 @@ public class MouseInputManager implements MouseListener, MouseMotionListener {
 	public void mouseExited(MouseEvent e) {
 	}
 
-	//GETTERS SETTERS
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 
 	public boolean isLeftPressed() {
 		return leftPressed;

@@ -39,8 +39,7 @@ public abstract class UIObject {
 			onClick();
 	}
 
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public float getX() {
 		return x;
 	}

@@ -22,14 +22,14 @@ public class Boss extends StaticEntity {
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.boss, (int) (x), (int) (y), width, height, null);
+		g.drawImage(Assets.boss, (int) (xOfEntity), (int) (yOfEntity), entityWidth, entityHeight, null);
 	}
 	
 	@Override
 	public void die() {
 		if((State.getYourScore()) >= 190) {
 		JOptionPane.showMessageDialog(null, "You won!", null, 1);
-		State.setYourScore(x = State.getYourScore() + 100);
+		State.setYourScore(xOfEntity = State.getYourScore() + 100);
 		handler.getMouseInputManager().setUIManager(handler.getUIManager()); //setting this back to the UiManager is important to the buttons can be pressed again 
 		State.setState(handler.getGame().menuState); //goes back to menu state
 		State.CheckScore(); //checks if new high-score has to be set

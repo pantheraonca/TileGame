@@ -46,8 +46,7 @@ public class UIManager {
 		objects.remove(o);
 	}
 
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public Handler getHandler() {
 		return handler;
 	}

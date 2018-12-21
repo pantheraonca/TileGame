@@ -4,23 +4,32 @@ import tilegame.difficulty.DifficultyLevel;
 import tilegame.entities.EntityManager;
 import tilegame.entities.individuals.Player;
 import tilegame.fields.Field;
-import tilegame.graphics.PlayerCamera;
+import tilegame.graphics.PlayerLocator;
 import tilegame.input.KeyInputManager;
 import tilegame.input.MouseInputManager;
 import tilegame.skills.Skills;
 import tilegame.userinterface.UIManager;
 
+
+// handles a collection of getters and setters to easily access them, gets taken in by most objects.
 public class Handler {
 
-	//VARIABLES
-	private Game game;
-	private Field field;
+	// VARIABLES
+	private Game game; 
+	// the game object from which all paths to the getters and setters start from.
 
-	//CONSTRUCTOR
-	public Handler(Game game) { //allows us to just pass one object and access all the rest in here
+	private Field field;
+	// the field object from which all paths to the getters and setters start from.
+
+
+	// CONSTRUCTOR
+	public Handler(Game game) {
 		this.game = game;
 	}
 
+
+	/* GETTERS SETTERS. Getters return private variables otherwise unaccessible outside their class. 
+	 * Setters allow to change private variables otherwise unchangeable outside their class. */
 	public KeyInputManager getKeyInputManager() {
 		return game.getKeyInputManager();
 	}
@@ -57,7 +66,7 @@ public class Handler {
 		return game.getMenuState().getUiManager();
 	}
 
-	public PlayerCamera getPlayerCamera() {
+	public PlayerLocator getPlayerCamera() {
 		return game.getPlayerCamera();
 	}
 
@@ -92,7 +101,7 @@ public class Handler {
 	public void setSkillArray(boolean[] skillArray) {
 		game.settingsState.setSkillArray(skillArray); 
 	}
-	
+
 	public Skills getStamina() {
 		return getPlayer().getStamina();
 	}
@@ -108,7 +117,7 @@ public class Handler {
 	public void setFighter(Skills fighter) {
 		getPlayer().setFighter(fighter);;
 	}
-	
+
 	public int getDamage() {
 		return getPlayer().getDamage();
 	}
@@ -116,20 +125,20 @@ public class Handler {
 	public void setDamage(int damage) {
 		getPlayer().setDamage(damage);
 	}
-	
+
 	public EntityManager getEntityManager() {
 		return getField().getEntityManager();
 	}
-	
+
 	public void setEntityManager(EntityManager entityManager) {
 		getField().setEntityManager(entityManager);
 	}
-	
+
 	public Player getPlayer() {
 		return getEntityManager().getPlayer();
 	}
 
 	public void setPlayer(Player player) {
-		 getEntityManager().setPlayer(player);
+		getEntityManager().setPlayer(player);
 	}
 }

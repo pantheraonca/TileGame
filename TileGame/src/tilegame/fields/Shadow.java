@@ -59,8 +59,7 @@ public class Shadow {
 		}
 	}
 
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public int getVisibilityLevel() {
 		return visibilityLevel;
 	}

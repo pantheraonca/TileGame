@@ -2,53 +2,64 @@ package tilegame.display;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
+
+// A display object combines a JFrame and a Canvas and sets them to the same size.
 public class Display {
 
-	//VARIABLES
-	private JFrame frame; //this is the window itself??
-	private Canvas canvas; //this is all the graphics
+	// VARIABLES
+	private JFrame frame; 
+	/* JFrame object instantiated by the game object which passes along displayWidth, 
+	 * displayHeight and a game title. The JFrame is the window that opens when you start the application. */
+
+	private Canvas canvas; 
+	/* Represents a blank rectangular area of the screen onto which the application can draw. 
+	 * displayWidth and displayHeight specified in the game object are passed to it. */
 
 	private String title;
-	private int width, height;//private because other classes do not have to access to them
+	private int width, height;
 
-	//CONSTRUCTOR
+	// CONSTRUCTOR
 	public Display(String title, int width, int height) { //this is the constructor
 		this.title = title;
 		this.width = width; 
 		this.height = height; //this. so the class variables can be the same name as the parameters
 
-		createDisplay(); //why this??
+		createDisplay();
 	}
-	
+
+
+	/* instantiates the JFrame and the Canvas and sets the JFrame so that it is not re-sizable,
+	 * is in the center of the screen and closable by pressing the x button of the window. */
 	private void createDisplay() {
 		frame = new JFrame(title);
 		frame.setSize(width, height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //so game closes along with window
-		frame.setResizable(false); //not able to resize window
-		frame.setLocationRelativeTo(null); //starts up in the center of the screen
-		frame.setVisible(true); //window is visible		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);		
 
 		canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
-		canvas.setMinimumSize(new Dimension(width, height)); //makes sure canvas is always the size of our frame
-		canvas.setFocusable(false); //what is this, JFrame is only thing that can have focus??
+		canvas.setMinimumSize(new Dimension(width, height));
+		canvas.setFocusable(false);
 
 		frame.add(canvas);
-		frame.pack(); //so you see all the canvas 
+		// adds the Canvas to the JFrame. 
 
+		frame.pack(); 
+		// causes the window to be sized to fit the preferred size and layouts of its subcomponents
 	}
-	
-	//GETTERS SETTERS
 
-	public Canvas getCanvas() { //getter method so we can access canvas from outside the class
+
+	// GETTERS SETTERS (function of getters and setters described in handler class)
+	public Canvas getCanvas() {
 		return canvas;
 	}
 
-	public JFrame getFrame() { //same here
+	public JFrame getFrame() {
 		return frame;
 	}
 }

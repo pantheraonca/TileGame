@@ -118,8 +118,7 @@ public class Field {
 		return spawnArray;
 	}
 
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public int getWidth() {
 		return width;
 	}

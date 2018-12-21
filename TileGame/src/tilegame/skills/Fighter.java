@@ -48,8 +48,7 @@ public class Fighter extends Skills {
 		System.out.println("Damage:" + handler.getDamage());
 	}
 	
-	//GETTERS SETTERS
-
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public int getAttackBonus() { //die sind hier weil sonst throws error oben das attack bonus nicht benutzt wird 
 		return attackBonus;
 	}

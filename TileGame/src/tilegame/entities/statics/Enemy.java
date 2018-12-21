@@ -33,12 +33,12 @@ public class Enemy extends StaticEntity {
 
 	@Override
 	public void die() {
-		State.setYourScore(x = State.getYourScore() + 20);
+		State.setYourScore(xOfEntity = State.getYourScore() + 20);
 		handler.getFighter().increaseSkill();  // for each enemy that dies a fighter increases its skill-level
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.enemy, (int) (x), (int) (y), width, height, null);
+		g.drawImage(Assets.enemy, (int) (xOfEntity), (int) (yOfEntity), entityWidth, entityHeight, null);
 	}
 }

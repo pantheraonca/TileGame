@@ -169,8 +169,7 @@ public class SettingsState extends State{
 		g.drawString("Choose Difficulty", 200, 80);
 	}
 	
-	//GETTERS SETTERS
-
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public UIManager getSettingsUiManager() {
 		return settingsUiManager;
 	}

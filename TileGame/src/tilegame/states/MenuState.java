@@ -63,8 +63,7 @@ public class MenuState extends State {
 	
 	}
 
-	//GETTERS SETTERS
-
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public UIManager getUiManager() {
 		return uiManager;
 	}

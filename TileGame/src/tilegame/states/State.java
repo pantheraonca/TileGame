@@ -108,17 +108,19 @@ public abstract class State { //what is an abstract class
 		}
 	}
 
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public static String getHighScore() {
 		return highScore;
 	}
+	
 	public static void setHighScore(String highScore) {
 		State.highScore = highScore;
 	}
+	
 	public static int getYourScore() {
 		return yourScore;
 	}
+	
 	public static void setYourScore(int yourScore) {
 		State.yourScore = yourScore;
 	}

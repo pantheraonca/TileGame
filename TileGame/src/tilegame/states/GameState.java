@@ -43,8 +43,7 @@ public class GameState extends State {
 		g.drawString("Energy" + handler.getField().getEntityManager().getPlayer().getEnergy(), 10, 45);
 	}
 
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public Shadow getShadow() {
 		return shadow;
 	}

@@ -50,7 +50,7 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.player,  x, y, width, height, null);
+		g.drawImage(Assets.player,  xOfEntity, yOfEntity, entityWidth, entityHeight, null);
 		//width and height re-scale the player image
 	}
 	
@@ -143,8 +143,7 @@ public class Player extends Individual { //somehow because this isn't an abstrac
 
 	
 	
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public Skills getStamina() {
 		return stamina;
 	}

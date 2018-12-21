@@ -46,8 +46,7 @@ public class Tile {
 		return false;
 	}
 
-	//GETTERS SETTERS
-	
+	//GETTERS SETTERS(function of getters and setters described in handler class)
 	public int getId() {
 		return id;
 	}	

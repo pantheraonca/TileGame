@@ -3,13 +3,13 @@ package tilegame.graphics;
 import tilegame.Handler;
 import tilegame.entities.Entity;
 
-public class PlayerCamera {
+public class PlayerLocator {
 
 	private float xOffset;
 	private float yOffset;
 	private Handler handler;
 
-	public PlayerCamera (Handler handler, float xOffset, float yOffset) {
+	public PlayerLocator (Handler handler, float xOffset, float yOffset) {
 
 		this.handler= handler;
 		this.xOffset = xOffset;
@@ -29,8 +29,7 @@ public class PlayerCamera {
 	}
 
 
-	//GETTERS SETTERS
-
+	//GETTERS SETTERS (function of getters and setters described in handler class)
 	public float getxOffset() {
 		return xOffset;
 	}
