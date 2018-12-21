@@ -16,7 +16,7 @@ public class Tile {
 	public static Tile shadowTile = new ShadowTile(3);
 	public static Tile energyTile = new EnergyTile(4); 
 	public static Tile magmaTile = new MagmaTile(5);
-	// instantiates Tiles of different types and sets an TILE_ID for them.
+	// initiates Tiles of different types and sets an TILE_ID for them.
 	
 
 	

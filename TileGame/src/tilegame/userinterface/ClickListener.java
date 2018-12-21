@@ -1,5 +1,6 @@
-package tilegame.userinterface;//interfaces have no methods just the outline of a class???what else 
+package tilegame.userinterface;
 
+//Interface that together with the mouseInputManager enables mouse input 
 public interface ClickListener {
 
 	public void onClick(); 

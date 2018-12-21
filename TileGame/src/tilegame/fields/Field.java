@@ -24,7 +24,7 @@ public class Field {
 	private int spawnX = positioner * 10, spawnY = positioner * 2;
 	// spawn position of the Player.
 	
-	private int energy = 200;
+	private int energy = 100;
 	// sets the energy the player starts with.
 	
 	private int[][] fieldTiles; 

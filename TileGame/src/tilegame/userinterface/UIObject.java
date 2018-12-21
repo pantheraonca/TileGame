@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
+//this class 
 public abstract class UIObject {
 
 	//VARIABLES

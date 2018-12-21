@@ -3,6 +3,7 @@ package tilegame.userinterface;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+//class that allows for the constructions of buttons that change their appearance if the cursor is hovering over them.
 public class UIImageButton extends UIObject {
 
 	//VARIABLES

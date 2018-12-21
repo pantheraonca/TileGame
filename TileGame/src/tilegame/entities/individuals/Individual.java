@@ -65,7 +65,7 @@ public abstract class Individual extends Entity {
 	 * Then the next if statement calls the collidionSpecialTile method which returns true if the tile 
 	 * the individual tries to move into is a special tile. If the tile is special the type of tile gets checked
 	 * and the respective effect is invoked (dirt tile: player energy - 2;
-	 * energy tile: player energy + 2 and tile gets set to a magma tile; magma tile player dies).
+	 * energy tile: player energy + 5 and tile gets set to a magma tile; magma tile player dies).
 	 * For all collisions with special tiles the individual moves two tiles into the direction he moved into the tile */
 	public void moveX() {
 		if(xMove > 0) {//RIGHT
@@ -82,7 +82,7 @@ public abstract class Individual extends Entity {
 					handler.getPlayer().hurt(2);
 				}
 				else if(handler.getField().obtainTile(tx, yOfEntity / Tile.TILE_HEIGHT).getId() == 4) {
-					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 2); 
+					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 4); 
 					updatedFieldTiles = handler.getField().getFieldTiles();
 					updatedFieldTiles [tx][yOfEntity / Tile.TILE_HEIGHT] = 5;
 					handler.getField().setFieldTiles(updatedFieldTiles);
@@ -112,7 +112,7 @@ public abstract class Individual extends Entity {
 					handler.getPlayer().hurt(2);
 				}
 				else if(handler.getField().obtainTile(tx, yOfEntity / Tile.TILE_HEIGHT).getId() == 4) {
-					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 2);     
+					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 4);     
 					updatedFieldTiles = handler.getField().getFieldTiles();
 					updatedFieldTiles [tx][yOfEntity / Tile.TILE_HEIGHT] = 5;
 					handler.getField().setFieldTiles(updatedFieldTiles);
@@ -145,7 +145,7 @@ public abstract class Individual extends Entity {
 					handler.getPlayer().hurt(2);
 				}
 				else if(handler.getField().obtainTile(xOfEntity / Tile.TILE_WIDTH, ty).getId() == 4) {
-					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 2);     
+					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 4);     
 					updatedFieldTiles = handler.getField().getFieldTiles();
 					updatedFieldTiles [xOfEntity / Tile.TILE_WIDTH][ty] = 5;
 					handler.getField().setFieldTiles(updatedFieldTiles);
@@ -174,7 +174,7 @@ public abstract class Individual extends Entity {
 					handler.getPlayer().hurt(2);
 				}
 				else if(handler.getField().obtainTile(xOfEntity / Tile.TILE_WIDTH, ty).getId() == 4) {
-					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 2);     
+					handler.getPlayer().setEnergy((handler.getPlayer().getEnergy()) + 4);     
 					updatedFieldTiles = handler.getField().getFieldTiles();
 					updatedFieldTiles [xOfEntity / Tile.TILE_WIDTH][ty] = 5;
 					handler.getField().setFieldTiles(updatedFieldTiles);

@@ -3,6 +3,7 @@ package tilegame.userinterface;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+//this class allows for the construction of Buttons
 public class UIButton extends UIObject {
 
 	//VARIABLES
@@ -20,7 +21,7 @@ public class UIButton extends UIObject {
 	public void update() {
 	}
 
-	@Override
+	@Override 
 	public void render(Graphics g) {
 		g.drawImage(image, (int) x, (int) y, width, height, null);
 	}

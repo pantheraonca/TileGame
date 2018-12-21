@@ -6,7 +6,9 @@ import tilegame.Handler;
 import tilegame.fields.Field;
 import tilegame.fields.Shadow;
 
-//this class is a subclass of the state class. It 
+//this class is a subclass of the state class. Here the field and the shadow are initiated.
+//everything that has to be rendered in the gameState is included in this class.
+
 public class GameState extends State {
 
 	//VARIABLES
@@ -14,7 +16,7 @@ public class GameState extends State {
 	private Shadow shadow;
 
 
-	//CONSTRUCTOR takes in a handler object. initiates the field and the shadow and 
+	//CONSTRUCTOR takes in a handler object. initiates the field and the shadow and sets the initiated field.
 	public GameState(Handler handler) {
 		super(handler);
 		field = new Field(handler);
@@ -22,7 +24,7 @@ public class GameState extends State {
 		shadow = new Shadow(handler, handler.getGame(), 20, 20);
 	}
 	
-	//updates the field and the shadow
+	//updates the field and the shadow 
 	@Override
 	public void update() {
 		field.update();

@@ -2,7 +2,7 @@ package tilegame.tiles;
 
 import tilegame.graphics.Assets;
 
-//this class 
+//this class allows for construction of dirt tiles it takes the cropped image from the assets class and assigns it to the dirt tile object
 public class DirtTile extends Tile {
 
 	public DirtTile(int id) {

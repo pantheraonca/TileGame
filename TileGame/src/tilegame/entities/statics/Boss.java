@@ -40,7 +40,7 @@ public class Boss extends StaticEntity {
 	 * otherwise a pop-up message "Your Score is to low!" will pop up and the Boss will respawn at the 
 	 * other side of the field. After this respawn the boss will respawn
 	 * at the same position if the player attacks the boss again with a score lower than 190.
-	 * If the player attacks the boss with a score bigger than 190 The score variable is increased by 100, a pop-up message
+	 * If the player attacks the boss with a score bigger than 190 The score variable is increased by 40, a pop-up message
 	 * "You won!" is generated, the Score is checked to see if a new highscore has been set. 
 	 * It sets the current score back to zero, closes the current window, sets the Game to a new Game
 	 * so everything is set back to when the game first started and calls the run method so a new window opens. */
@@ -48,7 +48,7 @@ public class Boss extends StaticEntity {
 	public void die() {
 		if((State.getYourScore()) >= 190) {
 			JOptionPane.showMessageDialog(null, "You won!", null, 1);
-			State.setYourScore(xOfEntity = State.getYourScore() + 100);
+			State.setYourScore(xOfEntity = State.getYourScore() + 40);
 			//handler.getMouseInputManager().setUIManager(handler.getUIManager()); //setting this back to the UiManager is important to the buttons can be pressed again 
 			State.setState(handler.getGame().menuState); //goes back to menu state
 			State.CheckScore(); //checks if new high-score has to be set
