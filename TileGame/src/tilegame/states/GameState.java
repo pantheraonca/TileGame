@@ -6,6 +6,7 @@ import tilegame.Handler;
 import tilegame.fields.Field;
 import tilegame.fields.Shadow;
 
+//this class is a subclass of the state class. It 
 public class GameState extends State {
 
 	//VARIABLES
@@ -13,29 +14,27 @@ public class GameState extends State {
 	private Shadow shadow;
 
 
-	//CONSTRUCTOR
+	//CONSTRUCTOR takes in a handler object. initiates the field and the shadow and 
 	public GameState(Handler handler) {
 		super(handler);
 		field = new Field(handler);
 		handler.setField(field);
-		shadow = new Shadow(handler, handler.getGame(), 20, 20); //MARIAN in shadow class noch size automatisch anpassen??
+		shadow = new Shadow(handler, handler.getGame(), 20, 20);
 	}
 	
+	//updates the field and the shadow
 	@Override
 	public void update() {
 		field.update();
 		shadow.update();
 	}
 
-	@Override
+	// renders the field and the shadow. Then sets the color to white and renders 
+	// the Highscore, the players current score and energy to the game state.
 	public void render(Graphics g) {
 
 		field.render(g);
 		shadow.render(g);
-
-		if(State.getHighScore().equals("")) {
-			State.setHighScore(this.ReadHighScore());
-		}
 		
 		g.setColor(Color.white);
 		g.drawString("Highscore: " + State.getHighScore(), 10, 15);

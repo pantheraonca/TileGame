@@ -9,7 +9,8 @@ public class EnergyTile extends Tile{
 		super(Assets.energy, id);
 	}
 	
-	@Override //just shows that this method overrides another one
+	//method that specifies that this tile is special
+	@Override 
 	public boolean isSpecial() {
 		return true;
 	}

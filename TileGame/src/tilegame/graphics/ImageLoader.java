@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+//used to Load an Image in from a location in the resources folder.
 public class ImageLoader {
 
 	//CONSTRUCTOR
@@ -15,6 +16,6 @@ public class ImageLoader {
 			e.printStackTrace();
 			System.exit(1); //if we don't load image into game we don't want to run our game
 		}
-		return null; //gets rid of errors
+		return null;
 	}
 }

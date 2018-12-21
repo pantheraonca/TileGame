@@ -9,7 +9,8 @@ public class RockTile extends Tile {
 
 	}
 	
-	@Override //just shows that this method overrides another one
+	//method that specifies that this tile is solid
+	@Override 
 	public boolean isSolid() {
 		return true;
 	}
