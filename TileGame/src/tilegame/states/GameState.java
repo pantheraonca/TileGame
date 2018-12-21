@@ -13,10 +13,13 @@ public class GameState extends State {
 
 	//VARIABLES
 	private Field field;
+	// this variable stores a multidimensional array containing integer values representing the id of an field tile
+	
 	private Shadow shadow;
+	// contains a multidimensional array at each index storing the value of the id of the shadow tile 
 
 
-	//CONSTRUCTOR takes in a handler object. initiates the field and the shadow and sets the initiated field.
+	//CONSTRUCTOR takes in a handler object. instantiates the field and the shadow and sets the instantiated field.
 	public GameState(Handler handler) {
 		super(handler);
 		field = new Field(handler);

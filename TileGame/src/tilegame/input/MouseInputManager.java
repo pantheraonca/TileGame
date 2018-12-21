@@ -6,7 +6,7 @@ import java.awt.event.MouseMotionListener;
 
 import tilegame.userinterface.UIManager;
 
-//class that enables mouse input in the game and stores the mouse keys used in the game.
+//class that enables mouse input in the game and stores the state of the mousebuttons used in the game as boolean variables.
 public class MouseInputManager implements MouseListener, MouseMotionListener {
 
 	//VARIABLES

@@ -8,9 +8,12 @@ public class UIImageButton extends UIObject {
 
 	//VARIABLES
 	private BufferedImage[] images;
+	// buffered image array of the two buffered images which can be rendered as button
+	
 	private ClickListener clicker;
+	//ClickListener object of which the on click method will be called 
 
-	//CONSTRUCTOR
+	//Constructor
 	public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
 		super(x, y, width, height);
 		this.images = images;
@@ -20,7 +23,9 @@ public class UIImageButton extends UIObject {
 	@Override
 	public void update() {
 	}
-
+	
+	
+	//draws one of the bufferedImages stored in the array to the canvas depending if mouse hovers over button or not 
 	@Override
 	public void render(Graphics g) {
 		if(hovering)

@@ -12,37 +12,47 @@ import javax.swing.JOptionPane;
 
 import tilegame.Handler;
 
-public abstract class State { //what is an abstract class
 
-	//GAMESTATEMANAGER has nothing to do with this class
-	private static State currentState = null;
+// This class is to be extended by the different Classes corresponding to a instantiatable state of the game
+public abstract class State { 
+
 	
+	private static State currentState = null;
+	// This variable is set to null and can be set to the currenState run in the game by the setState method.
+	
+	
+	//this method sets the currenState variable
 	public static void setState(State state) {
 		currentState = state;
 	}
-
+	
+	
+	//this method sets the currenState variable
 	public static State getState() {
 		return currentState;
 	}
 
-	//CLASS
-	//VARIABLES
-	protected Handler handler;
-	private static String highScore = "";
-	private static int yourScore = 0; //things need to be global if you want to access them from anywhere
 	
+	protected Handler handler;
+	
+	private static String highScore = "";
+	// this string variable the stored highScore will be passed to
+	
+	private static int yourScore = 0; //things need to be global if you want to access them from anywhere
+	//this is the score variable updated while the game is running which must be compaed against the highscore 
 
 	//CONSTRUCTOR
 	public State(Handler handler) {
 		this.handler = handler;
 	}
-	
 
 	public abstract void update();
-
-	public abstract void render(Graphics g);
-
 	
+	
+	public abstract void render(Graphics g);
+	
+
+	// this method reads the file which contains the highScore data and returns it as a string
 	public String ReadHighScore() {
 		FileReader readFile =null; //read file
 		BufferedReader reader = null;//extract what we need from the file
@@ -66,9 +76,12 @@ public abstract class State { //what is an abstract class
 		}
 	}
 
+	//this method checks if the stored highScore equals nothing, if yes it returns. This prevents errors. If the highScore equals sth. then it will
+	//check if the current score is lower than the new YourScore by splitting the highScore string. If yes it sets the highScore to the new score 
+	//creates a newFile and writes the new highScore to it.
 	public static void CheckScore() {
 		if (highScore.equals(""))
-			return; //if highScore equals nothing then no need to check the score this prevents errors
+			return; //
 
 		if (yourScore > Integer.parseInt(highScore.split(":")[1])) { //converts the part that contains the highScore string to an integer
 			//user has set new highScore
@@ -108,19 +121,17 @@ public abstract class State { //what is an abstract class
 		}
 	}
 
-	//GETTERS SETTERS (function of getters and setters described in handler class)
+	//GETTERS SETTERS
+	
 	public static String getHighScore() {
 		return highScore;
 	}
-	
 	public static void setHighScore(String highScore) {
 		State.highScore = highScore;
 	}
-	
 	public static int getYourScore() {
 		return yourScore;
 	}
-	
 	public static void setYourScore(int yourScore) {
 		State.yourScore = yourScore;
 	}
